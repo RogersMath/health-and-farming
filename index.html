@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#3E1A08">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Deftere Golle — Practical health and farming guide for northern Senegal. Duckweed, moringa, water safety, soil restoration, health basics. English, Pulaar, Wolof, French. Works offline.">
+<title>Deftere Golle — Health &amp; Farming Guide</title>
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--terra:#8B3A1A;--terra-dk:#5C2410;--terra-lt:#F5E8DF;--green:#2D5A1B;--green-md:#3D7A26;--green-lt:#E4F0DC;--ochre:#9A6B00;--ochre-lt:#FFF3CC;--blue:#1A4D6E;--blue-lt:#DFF0F5;--purple:#5C2E8A;--soil:#3E1A08;--cream:#FAF6F0;--white:#FFFDF9;--txt:#1A0F0A;--txt2:#3D2B1F;--txt3:#5C4A3A;--border:#D4C4B4;--shadow:rgba(62,26,8,.18);--nav-top:52px;--nav-tab:66px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:"Source Serif 4","Noto Sans",Georgia,serif;background:var(--cream);color:var(--txt);line-height:1.7;min-height:100vh;padding-top:calc(var(--nav-top) + var(--nav-tab))}
+.skip-link{position:absolute;top:-999px;left:0;background:var(--soil);color:#fff;padding:12px 20px;font-size:1rem;font-weight:700;z-index:9999;text-decoration:none;border-radius:0 0 8px 0}
+.skip-link:focus{top:0}
+
+/* LANG BAR */
+#lang-bar{position:fixed;top:0;left:0;right:0;z-index:300;height:var(--nav-top);background:var(--soil);display:flex;align-items:center;justify-content:center;gap:4px;padding:0 10px;box-shadow:0 2px 8px var(--shadow)}
+.lang-lbl{font-family:"Noto Sans",sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A89070;margin-right:4px;white-space:nowrap}
+.lang-btn{font-family:"Noto Sans",sans-serif;font-size:.78rem;font-weight:700;padding:6px 11px;border:2px solid transparent;border-radius:6px;cursor:pointer;background:transparent;color:#C8B89A;min-height:40px;min-width:44px;transition:background .15s,color .15s,border-color .15s}
+.lang-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+.lang-btn[aria-pressed="true"]{background:var(--terra);color:#fff;border-color:#E08060}
+.lang-btn:focus-visible{outline:3px solid #FFD080;outline-offset:2px}
+#a11y-btn{margin-left:6px;font-size:.95rem;padding:5px 9px;min-height:40px;color:#C8B89A;background:transparent;border:2px solid transparent;border-radius:6px;cursor:pointer;font-family:"Noto Sans",sans-serif;font-weight:700;transition:background .15s,color .15s}
+#a11y-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+#a11y-btn[aria-pressed="true"]{background:var(--ochre);color:#fff;border-color:#E0A020}
+#a11y-btn:focus-visible{outline:3px solid #FFD080;outline-offset:2px}
+
+/* TAB NAV */
+#tab-nav{position:fixed;top:var(--nav-top);left:0;right:0;z-index:290;height:var(--nav-tab);background:var(--white);border-bottom:2px solid var(--border);display:flex;align-items:stretch;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+#tab-nav::-webkit-scrollbar{display:none}
+.tab-btn{flex:1;min-width:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:6px 8px;border:none;border-bottom:3px solid transparent;background:transparent;cursor:pointer;font-family:"Noto Sans",sans-serif;font-size:.65rem;font-weight:700;color:var(--txt3);transition:background .15s,border-color .15s,color .15s;min-height:var(--nav-tab);white-space:nowrap}
+.tab-btn .ti{font-size:1.25rem;line-height:1}
+.tab-btn:hover{background:var(--terra-lt);color:var(--terra-dk)}
+.tab-btn[aria-selected="true"]{border-bottom-color:var(--terra);color:var(--terra-dk);background:var(--terra-lt)}
+.tab-btn:focus-visible{outline:3px solid var(--ochre);outline-offset:-2px}
+.tab-btn[data-ch="moringa"][aria-selected="true"]{border-bottom-color:var(--green);color:var(--green);background:var(--green-lt)}
+.tab-btn[data-ch="water"][aria-selected="true"]{border-bottom-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+.tab-btn[data-ch="soil"][aria-selected="true"]{border-bottom-color:var(--ochre);color:var(--ochre);background:var(--ochre-lt)}
+.tab-btn[data-ch="health"][aria-selected="true"]{border-bottom-color:var(--purple);color:var(--purple);background:#F0E8FF}
+
+/* INSTALL BANNER */
+#install-bar{display:none;background:var(--green);color:#fff;padding:10px 16px;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;font-family:"Noto Sans",sans-serif;font-size:.84rem;text-align:center}
+#install-bar.show{display:flex}
+#install-bar button{font-family:"Noto Sans",sans-serif;font-size:.8rem;font-weight:700;cursor:pointer;min-height:36px;border-radius:6px;padding:6px 14px;border:none}
+#install-do{background:#fff;color:var(--green)}
+#install-x{background:transparent;border:1px solid rgba(255,255,255,.5)!important;color:rgba(255,255,255,.85)}
+
+/* OFFLINE */
+#offline-badge{display:none;position:fixed;bottom:16px;right:16px;background:var(--ochre);color:#fff;padding:8px 14px;border-radius:8px;font-family:"Noto Sans",sans-serif;font-size:.8rem;font-weight:700;z-index:400;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+body.offline #offline-badge{display:block}
+
+/* HEADER */
+header{background:linear-gradient(140deg,var(--soil) 0%,var(--terra-dk) 55%,#6A2818 100%);color:#FAF0E6;padding:28px 16px 24px;text-align:center;position:relative;overflow:hidden}
+header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 80%,rgba(154,107,0,.25) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(45,90,27,.2) 0%,transparent 60%);pointer-events:none}
+.hdr{position:relative;z-index:1;max-width:640px;margin:0 auto}
+.hdr-icon{font-size:2.2rem;display:block;margin-bottom:8px;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+header h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.6rem,5vw,2.5rem);font-weight:900;color:#FFF0E0;text-shadow:0 2px 10px rgba(0,0,0,.5);line-height:1.15}
+.hdr-sub{font-family:"Noto Sans",sans-serif;font-size:clamp(.82rem,2.5vw,.95rem);color:#C8B09A;margin-top:7px}
+.hdr-langs{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.hdr-langs span{font-size:.68rem;color:#907A6A;background:rgba(255,255,255,.08);padding:2px 8px;border-radius:20px;font-family:"Noto Sans",sans-serif}
+
+/* CHAPTERS */
+.chapter{display:none}
+.chapter.active{display:block;animation:fadeUp .22s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+
+/* CHAPTER HERO */
+.ch-hero{padding:24px 16px 20px;position:relative}
+.ch-hero.c1{background:linear-gradient(150deg,var(--terra-lt),var(--white));border-bottom:3px solid var(--terra)}
+.ch-hero.c2{background:linear-gradient(150deg,var(--green-lt),var(--white));border-bottom:3px solid var(--green)}
+.ch-hero.c3{background:linear-gradient(150deg,var(--blue-lt),var(--white));border-bottom:3px solid var(--blue)}
+.ch-hero.c4{background:linear-gradient(150deg,var(--ochre-lt),var(--white));border-bottom:3px solid var(--ochre)}
+.ch-hero.c5{background:linear-gradient(150deg,#F0E8FF,var(--white));border-bottom:3px solid var(--purple)}
+.ch-hero-inner{max-width:720px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.ch-icon{font-size:2.4rem;line-height:1;padding-top:2px}
+.ch-num{font-family:"Noto Sans",sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:5px}
+.ch-hero h2{font-family:"Playfair Display",Georgia,serif;font-size:clamp(1.35rem,4vw,1.9rem);font-weight:700;color:var(--soil);line-height:1.2}
+.ch-intro{margin-top:10px;font-size:.9rem;color:var(--txt2);line-height:1.7;border-left:4px solid var(--terra);padding-left:12px;grid-column:1/-1}
+.ch-hero.c2 .ch-intro{border-left-color:var(--green)}
+.ch-hero.c3 .ch-intro{border-left-color:var(--blue)}
+.ch-hero.c4 .ch-intro{border-left-color:var(--ochre)}
+.ch-hero.c5 .ch-intro{border-left-color:var(--purple)}
+
+/* BODY */
+.ch-body{max-width:720px;margin:0 auto;padding:18px 16px 52px}
+
+/* SEC LABEL */
+.sec-label{font-family:"Noto Sans",sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--txt3);margin:20px 0 10px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+
+/* NEEDS BOX */
+.needs-box{background:var(--ochre-lt);border:2px solid #D4A820;border-radius:10px;padding:14px 16px;margin:14px 0}
+.needs-box h3{font-family:"Noto Sans",sans-serif;font-size:.67rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre);margin-bottom:10px}
+.needs-list{list-style:none;display:grid;gap:7px}
+.needs-list li{display:flex;gap:9px;align-items:flex-start;font-size:.88rem;line-height:1.55}
+.needs-list li::before{content:"✦";color:var(--ochre);flex-shrink:0;margin-top:2px;font-size:.75rem}
+
+/* STEPS */
+.step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.step-num{width:30px;height:30px;border-radius:50%;background:var(--terra);color:#fff;font-family:"Playfair Display",serif;font-size:.95rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step.g .step-num{background:var(--green)}
+.step.b .step-num{background:var(--blue)}
+.step.o .step-num{background:var(--ochre)}
+.step.p .step-num{background:var(--purple)}
+.step-main{font-size:.9rem;color:var(--txt);font-weight:600;line-height:1.6}
+
+/* WARN */
+.warn-box{background:#FFF5F5;border:2px solid #CC3333;border-radius:8px;padding:12px 14px;margin:12px 0;display:flex;gap:10px;align-items:flex-start}
+.warn-icon{font-size:1.2rem;flex-shrink:0}
+.warn-box p{font-size:.86rem;color:#8B0000;font-weight:600;line-height:1.55}
+
+/* REMEMBER */
+.rem-box{background:var(--green-lt);border:2.5px solid var(--green);border-radius:10px;padding:16px 18px;margin:22px 0 0}
+.rem-box h3{font-family:"Playfair Display",serif;font-size:.97rem;color:var(--green);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.rem-items{display:grid;gap:7px}
+.rem-item{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;line-height:1.55}
+.rem-item::before{content:"✓";color:var(--green);font-weight:700;font-family:"Noto Sans",sans-serif;flex-shrink:0;margin-top:1px}
+
+/* ORS */
+.ors-box{background:var(--blue-lt);border:2.5px solid var(--blue);border-radius:10px;padding:18px;margin:14px 0;text-align:center}
+.ors-box h3{font-family:"Playfair Display",serif;font-size:1.05rem;color:var(--blue);margin-bottom:12px}
+.ors-row{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.ors-item{background:#fff;border:2px solid var(--blue);border-radius:8px;padding:10px 12px;min-width:80px;text-align:center}
+.ors-amt{font-family:"Playfair Display",serif;font-size:1.6rem;font-weight:700;color:var(--blue);line-height:1}
+.ors-ing{font-family:"Noto Sans",sans-serif;font-size:.68rem;color:var(--txt2);margin-top:3px}
+.ors-plus{font-size:1.3rem;color:var(--blue);font-weight:700}
+.ors-note{font-size:.8rem;color:var(--txt3);font-family:"Noto Sans",sans-serif}
+
+/* HEALTH CARDS */
+.hc-grid{display:grid;gap:16px;margin-top:14px}
+.hc{border-radius:12px;overflow:hidden;border:2px solid var(--border);box-shadow:0 2px 8px var(--shadow)}
+.hc-head{padding:12px 16px;display:flex;align-items:center;gap:10px}
+.hc-head h3{font-family:"Playfair Display",serif;font-size:.97rem;color:#fff;line-height:1.25}
+.hc-icon{font-size:1.4rem;flex-shrink:0}
+.hc-body{padding:14px 16px;background:#fff}
+.hc-body ul{list-style:none;display:grid;gap:6px}
+.hc-body li{display:flex;gap:8px;font-size:.86rem;line-height:1.55}
+.hc-body li::before{content:"→";font-weight:700;flex-shrink:0}
+.hc-sublabel{font-weight:700;font-size:.83rem;margin:10px 0 6px;color:var(--txt2)}
+.hc-sublabel.red{color:#CC3300}
+.hc-note{font-size:.8rem;padding:9px 12px;border-radius:7px;margin-top:10px;line-height:1.55}
+.hc-hands .hc-head{background:var(--green-md)}
+.hc-hands li::before{color:var(--green-md)}
+.hc-hands .hc-note{background:var(--green-lt);color:var(--green)}
+.hc-malaria .hc-head{background:#7A3A00}
+.hc-malaria li::before{color:#7A3A00}
+.hc-preg .hc-head{background:var(--terra)}
+.hc-preg li::before{color:var(--terra)}
+.hc-preg .hc-note{background:var(--terra-lt);color:var(--terra-dk)}
+.hc-wound .hc-head{background:var(--blue)}
+.hc-wound li::before{color:var(--blue)}
+.hc-muac .hc-head{background:var(--purple)}
+.hc-muac li::before{color:var(--purple)}
+.hc-muac .hc-note{background:#F0E8FF;color:var(--purple)}
+
+hr.div{border:none;border-top:1px solid var(--border);margin:18px 0}
+
+/* FOOTER */
+footer{background:var(--soil);color:#9A8070;padding:22px 16px;text-align:center;font-family:"Noto Sans",sans-serif;font-size:.75rem;line-height:1.8}
+
+/* FOCUS */
+:focus-visible{outline:3px solid var(--ochre);outline-offset:3px}
+
+/* FORCED COLORS */
+@media(forced-colors:active){.step-num{border:2px solid ButtonText}.lang-btn[aria-pressed="true"]{border:3px solid Highlight}}
+
+/* REDUCED MOTION */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* LARGE TEXT */
+body.big{font-size:19px}
+body.big .ch-hero h2{font-size:1.6rem}
+body.big .step-main,.big .hc-body li,.big .needs-list li{font-size:1rem}
+
+/* LARGER SCREENS */
+@media(min-width:480px){.ch-body{padding:22px 22px 56px}.ch-hero{padding:30px 24px 24px}}
+@media(min-width:700px){.hc-grid{grid-template-columns:1fr 1fr}:root{--nav-top:56px;--nav-tab:70px}.tab-btn{font-size:.74rem}.tab-btn .ti{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<a href="#content" class="skip-link">Skip to main content</a>
+
+<nav id="lang-bar" aria-label="Language selector">
+  <span class="lang-lbl" aria-hidden="true">Lang</span>
+  <button class="lang-btn" data-lang="en" aria-pressed="true">English</button>
+  <button class="lang-btn" data-lang="pu" aria-pressed="false">Pulaar</button>
+  <button class="lang-btn" data-lang="wo" aria-pressed="false">Wolof</button>
+  <button class="lang-btn" data-lang="fr" aria-pressed="false">Français</button>
+  <button id="a11y-btn" aria-pressed="false" title="Large text">A+</button>
+</nav>
+
+<nav id="tab-nav" role="tablist" aria-label="Chapters">
+  <button class="tab-btn" role="tab" aria-selected="true"  data-ch="duckweed" aria-controls="ch-duckweed"><span class="ti" aria-hidden="true">🦆</span><span data-k="tab_duckweed">Duckweed</span></button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-ch="moringa"  aria-controls="ch-moringa" ><span class="ti" aria-hidden="true">🌱</span><span data-k="tab_moringa">Moringa</span></button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-ch="water"    aria-controls="ch-water"   ><span class="ti" aria-hidden="true">💧</span><span data-k="tab_water">Water</span></button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-ch="soil"     aria-controls="ch-soil"    ><span class="ti" aria-hidden="true">🪱</span><span data-k="tab_soil">Soil</span></button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-ch="health"   aria-controls="ch-health"  ><span class="ti" aria-hidden="true">❤️</span><span data-k="tab_health">Health</span></button>
+</nav>
+
+<div id="install-bar" role="banner">
+  <span data-k="install_text">📲 Save for offline — works without internet</span>
+  <button id="install-do">Install App</button>
+  <button id="install-x" aria-label="Dismiss">✕</button>
+</div>
+
+<header>
+  <div class="hdr">
+    <span class="hdr-icon" aria-hidden="true">🌿</span>
+    <h1 data-k="site_title">Deftere Golle</h1>
+    <p class="hdr-sub" data-k="site_subtitle">Health &amp; Farming Guide — Northern Senegal</p>
+    <div class="hdr-langs" aria-hidden="true"><span>English</span><span>Pulaar</span><span>Wolof</span><span>Français</span></div>
+  </div>
+</header>
+
+<main id="content">
+
+<article class="chapter active" id="ch-duckweed" role="tabpanel">
+  <div class="ch-hero c1"><div class="ch-hero-inner"><div><p class="ch-num" data-k="ch1_num">Chapter 1</p><h2 data-k="ch1_title">Duckweed</h2></div><span class="ch-icon" aria-hidden="true">🦆</span><p class="ch-intro" data-k="ch1_intro">Duckweed is a tiny green plant that floats on still water. It doubles in size every 2–3 days. Grow it in a container and feed it to your chickens, goats, and fish — it has protein as rich as meat.</p></div></div>
+  <div class="ch-body">
+    <div class="needs-box"><h3 data-k="needs_heading">What You Need</h3><ul class="needs-list"><li data-k="ch1_n0">One large bucket or basin (at least 50 liters)</li><li data-k="ch1_n1">Clean water — from a river, tap, or well</li><li data-k="ch1_n2">Duckweed starter — collected from a calm river or pond</li><li data-k="ch1_n3">Diluted animal urine or manure water (1 part manure to 10 parts water)</li><li data-k="ch1_n4">A spot with partial shade — not full midday sun</li></ul></div>
+    <p class="sec-label" data-k="steps_heading">Steps — What to Do</p>
+    <div class="step"><div class="step-num">1</div><div class="step-main" data-k="ch1_s1">Fill your large bucket with clean water, leaving two hand-widths of space at the top.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-main" data-k="ch1_s2">Place a handful of duckweed from a river or pond into the bucket. Let it rest on top of the water.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-main" data-k="ch1_s3">Add fertilizer: 1 part animal manure water to 10 parts clean water. Stir gently. Do not add too much.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-main" data-k="ch1_s4">Place the bucket in partial shade. Duckweed needs light but dies in full hot midday sun.</div></div>
+    <div class="step"><div class="step-num">5</div><div class="step-main" data-k="ch1_s5">Wait 5–7 days. The duckweed will spread to cover the surface. It has grown successfully.</div></div>
+    <div class="step"><div class="step-num">6</div><div class="step-main" data-k="ch1_s6">Scoop out half the duckweed with your hands. Move it to a second bucket with fresh water. Now you have two growing containers.</div></div>
+    <div class="step"><div class="step-num">7</div><div class="step-main" data-k="ch1_s7">Feed the harvested duckweed fresh to your chickens, goats, or fish immediately.</div></div>
+    <div class="step"><div class="step-num">8</div><div class="step-main" data-k="ch1_s8">Repeat the harvest every 3–4 days. The cycle continues every month.</div></div>
+    <div class="rem-box"><h3>⭐ <span data-k="remember_heading">Remember This</span></h3><div class="rem-items"><div class="rem-item" data-k="ch1_r0">Mix only 1 part manure to 10 parts water — never more.</div><div class="rem-item" data-k="ch1_r1">Harvest half every 3–4 days to keep it growing.</div><div class="rem-item" data-k="ch1_r2">Keep in partial shade — not full hot sun all day.</div></div></div>
+  </div>
+</article>
+
+<article class="chapter" id="ch-moringa" role="tabpanel">
+  <div class="ch-hero c2"><div class="ch-hero-inner"><div><p class="ch-num" data-k="ch2_num">Chapter 2</p><h2 data-k="ch2_title">Moringa (Nebeday)</h2></div><span class="ch-icon" aria-hidden="true">🌱</span><p class="ch-intro" data-k="ch2_intro">Nebeday grows throughout Fuuta Tooro. Its leaves contain more protein than eggs, more calcium than milk, and more Vitamin A than carrots. One spoonful of dried leaf powder per day fights malnutrition.</p></div></div>
+  <div class="ch-body">
+    <div class="needs-box"><h3 data-k="needs_heading">What You Need</h3><ul class="needs-list"><li data-k="ch2_n0">A moringa (nebeday) tree — or a cutting to plant</li><li data-k="ch2_n1">Clean water for washing</li><li data-k="ch2_n2">A clean cloth or mat for drying</li><li data-k="ch2_n3">A shaded room or covered area — NOT direct sun</li><li data-k="ch2_n4">A mortar and pestle for grinding the dried leaves</li></ul></div>
+    <p class="sec-label" data-k="ch2_sec1">Part 1 — Harvesting</p>
+    <div class="step g"><div class="step-num">1</div><div class="step-main" data-k="ch2_s1">Choose tender young leaves from the upper branches. These are the most nutritious.</div></div>
+    <div class="step g"><div class="step-num">2</div><div class="step-main" data-k="ch2_s2">Pull leaves gently with your fingers. Do not damage the tree's main branches. Leave the stem to grow more leaves.</div></div>
+    <div class="step g"><div class="step-num">3</div><div class="step-main" data-k="ch2_s3">Wash the leaves in clean water to remove dust and dirt.</div></div>
+    <p class="sec-label" data-k="ch2_sec2">Part 2 — Drying (Critical Step)</p>
+    <div class="warn-box"><span class="warn-icon" aria-hidden="true">⚠️</span><p data-k="ch2_warning">NEVER dry moringa leaves in direct hot sun. Sunlight destroys the vitamins and minerals. Always dry in shade.</p></div>
+    <div class="step g"><div class="step-num">4</div><div class="step-main" data-k="ch2_s4">Spread leaves thin on a clean cloth in a shaded, well-ventilated place. No direct sun.</div></div>
+    <div class="step g"><div class="step-num">5</div><div class="step-main" data-k="ch2_s5">Turn the leaves each day. After 2–3 days they will crumble between your fingers. They are dry and ready.</div></div>
+    <div class="step g"><div class="step-num">6</div><div class="step-main" data-k="ch2_s6">Pound the dry leaves into fine powder using your mortar and pestle. Sieve out the stems.</div></div>
+    <p class="sec-label" data-k="ch2_sec3">Part 3 — Using the Powder</p>
+    <div class="step g"><div class="step-num">7</div><div class="step-main" data-k="ch2_s7">Add one heaped spoonful to your sauce or child's porridge every single day.</div></div>
+    <div class="step g"><div class="step-num">8</div><div class="step-main" data-k="ch2_s8">Add the powder AFTER the sauce has come off the fire. Heat destroys the nutrients. Stir in after cooking.</div></div>
+    <div class="rem-box"><h3>⭐ <span data-k="remember_heading">Remember This</span></h3><div class="rem-items"><div class="rem-item" data-k="ch2_r0">Dry only in shade — NEVER in direct sun.</div><div class="rem-item" data-k="ch2_r1">Add powder after cooking, not into boiling food.</div><div class="rem-item" data-k="ch2_r2">One spoonful per day for children, pregnant women, and elders.</div></div></div>
+  </div>
+</article>
+
+<article class="chapter" id="ch-water" role="tabpanel">
+  <div class="ch-hero c3"><div class="ch-hero-inner"><div><p class="ch-num" data-k="ch3_num">Chapter 3</p><h2 data-k="ch3_title">Safe Water &amp; ORS</h2></div><span class="ch-icon" aria-hidden="true">💧</span><p class="ch-intro" data-k="ch3_intro">Water that looks clean can still carry illness. Unsafe water is a leading cause of child death. Three ways to make water safe — plus how to make ORS, the life-saving drink for diarrhea.</p></div></div>
+  <div class="ch-body">
+    <p class="sec-label" data-k="ch3_sec1">Method 1 — Boiling (Most Reliable)</p>
+    <div class="step b"><div class="step-num">1</div><div class="step-main" data-k="ch3_b1">Pour water into a clean pot.</div></div>
+    <div class="step b"><div class="step-num">2</div><div class="step-main" data-k="ch3_b2">Bring to a full rolling boil. Wait 1 full minute while it boils actively.</div></div>
+    <div class="step b"><div class="step-num">3</div><div class="step-main" data-k="ch3_b3">Cover and let cool. Store in a clean covered container. Do not touch with dirty hands.</div></div>
+    <hr class="div">
+    <p class="sec-label" data-k="ch3_sec2">Method 2 — Solar Disinfection (SODIS)</p>
+    <div class="step b"><div class="step-num">1</div><div class="step-main" data-k="ch3_sodis1">Take a clean, clear plastic PET bottle. Fill completely to the top with water.</div></div>
+    <div class="step b"><div class="step-num">2</div><div class="step-main" data-k="ch3_sodis2">Lay on a shiny surface (metal sheet or rooftop) in direct sunlight for 6–8 hours.</div></div>
+    <div class="step b"><div class="step-num">3</div><div class="step-main" data-k="ch3_sodis3">If cloudy, leave for 2 full days (48 hours). UV light kills bacteria and parasites.</div></div>
+    <hr class="div">
+    <p class="sec-label" data-k="ch3_sec3">Method 3 — Cloth Filtering</p>
+    <div class="step b"><div class="step-num">1</div><div class="step-main" data-k="ch3_cloth1">Fold a clean cloth three times to make three layers.</div></div>
+    <div class="step b"><div class="step-num">2</div><div class="step-main" data-k="ch3_cloth2">Pour water through the cloth into a clean container. This removes particles and sediment.</div></div>
+    <div class="warn-box"><span class="warn-icon" aria-hidden="true">⚠️</span><p data-k="ch3_cloth_warning">Cloth filtering alone does NOT make water safe. Always boil or SODIS as well.</p></div>
+    <hr class="div">
+    <p class="sec-label" data-k="ch3_sec4">ORS — Life-Saving Drink for Diarrhea</p>
+    <p style="font-size:.88rem;color:var(--txt2);margin-bottom:12px" data-k="ch3_ors_intro">Diarrhea removes water and salt from the body fast. It kills small children. ORS replaces what is lost.</p>
+    <div class="ors-box"><h3 data-k="ors_title">ORS Recipe — 1 Liter</h3><div class="ors-row"><div class="ors-item"><div class="ors-amt">1L</div><div class="ors-ing" data-k="ors_water">Boiled clean water</div></div><span class="ors-plus" aria-hidden="true">+</span><div class="ors-item"><div class="ors-amt">6</div><div class="ors-ing" data-k="ors_sugar">Teaspoons sugar</div></div><span class="ors-plus" aria-hidden="true">+</span><div class="ors-item"><div class="ors-amt">½</div><div class="ors-ing" data-k="ors_salt">Teaspoon salt</div></div></div><p class="ors-note" data-k="ors_mix">Mix well. Give small sips often. Make fresh every 24 hours.</p></div>
+    <div class="warn-box"><span class="warn-icon" aria-hidden="true">🏥</span><p data-k="ch3_clinic_warning">Go to clinic immediately if: sunken eyes, no tears when crying, cannot drink, blood in stool, or diarrhea continues 2+ days.</p></div>
+    <div class="rem-box"><h3>⭐ <span data-k="remember_heading">Remember This</span></h3><div class="rem-items"><div class="rem-item" data-k="ch3_r0">Boiling water is the most reliable purification method.</div><div class="rem-item" data-k="ch3_r1">ORS: 1 liter water + 6 teaspoons sugar + ½ teaspoon salt.</div><div class="rem-item" data-k="ch3_r2">Sunken eyes, no tears, no urination = go to clinic immediately.</div></div></div>
+  </div>
+</article>
+
+<article class="chapter" id="ch-soil" role="tabpanel">
+  <div class="ch-hero c4"><div class="ch-hero-inner"><div><p class="ch-num" data-k="ch4_num">Chapter 4</p><h2 data-k="ch4_title">Soil, Compost &amp; Rotation</h2></div><span class="ch-icon" aria-hidden="true">🪱</span><p class="ch-intro" data-k="ch4_intro">Tired soil gives small harvests. You can restore it without buying anything. Compost feeds the soil with what you already throw away. Zai pits catch rain. Crop rotation lets the land rest and recover.</p></div></div>
+  <div class="ch-body">
+    <p class="sec-label" data-k="ch4_signs_heading">Signs Your Soil Is Tired</p>
+    <ul class="needs-list" style="margin-bottom:16px"><li data-k="ch4_sign0">Soil cracks and hardens after rain</li><li data-k="ch4_sign1">Seeds sprout but plants do not grow tall</li><li data-k="ch4_sign2">Harvests get smaller every year</li><li data-k="ch4_sign3">Soil looks pale or grey, not dark</li></ul>
+    <p class="sec-label" data-k="ch4_sec1">Part 1 — Making Compost</p>
+    <div class="needs-box"><h3 data-k="needs_heading">What You Need</h3><ul class="needs-list"><li data-k="ch4_n0">Greens: fresh leaves, kitchen scraps, plant cuttings</li><li data-k="ch4_n1">Browns: dry stalks, old harvest stems, wood ash</li><li data-k="ch4_n2">Animal droppings (goat, chicken)</li><li data-k="ch4_n3">A little water</li><li data-k="ch4_n4">A compost pit or enclosed area — 1m × 1m</li></ul></div>
+    <div class="step o"><div class="step-num">1</div><div class="step-main" data-k="ch4_s1">Dig a compost pit near your field — about 1 meter × 1 meter. Or make a pile on the surface.</div></div>
+    <div class="step o"><div class="step-num">2</div><div class="step-main" data-k="ch4_s2">Add alternating layers: browns first, then greens, then animal droppings. Repeat.</div></div>
+    <div class="step o"><div class="step-num">3</div><div class="step-main" data-k="ch4_s3">Sprinkle water to keep the pile damp but not soaking wet.</div></div>
+    <div class="step o"><div class="step-num">4</div><div class="step-main" data-k="ch4_s4">Turn and mix the pile every two weeks. Turning helps it rot faster.</div></div>
+    <div class="step o"><div class="step-num">5</div><div class="step-main" data-k="ch4_s5">After 3–4 months, the compost is dark, rich, crumbles like soil. Mix into your field before planting.</div></div>
+    <hr class="div">
+    <p class="sec-label" data-k="ch4_sec2">Part 2 — Zai Pits</p>
+    <div class="step o"><div class="step-num">1</div><div class="step-main" data-k="ch4_zai1">Before planting, make small holes in the soil — about 30 cm apart across your field.</div></div>
+    <div class="step o"><div class="step-num">2</div><div class="step-main" data-k="ch4_zai2">Add a small handful of compost or animal droppings into each hole.</div></div>
+    <div class="step o"><div class="step-num">3</div><div class="step-main" data-k="ch4_zai3">Plant your seed in the hole. When rain falls, it collects in the hole instead of running away.</div></div>
+    <hr class="div">
+    <p class="sec-label" data-k="ch4_sec3">Part 3 — Crop Rotation</p>
+    <div class="step o"><div class="step-num">1</div><div class="step-main" data-k="ch4_rot1">Do not plant millet or sorghum in the same field every year. The soil becomes exhausted.</div></div>
+    <div class="step o"><div class="step-num">2</div><div class="step-main" data-k="ch4_rot2">After millet, plant cowpea (niébé). Cowpea puts nitrogen back into the soil naturally.</div></div>
+    <div class="step o"><div class="step-num">3</div><div class="step-main" data-k="ch4_rot3">After harvest, mix the cowpea stalks into the soil. They restore and clean the land.</div></div>
+    <div class="rem-box"><h3>⭐ <span data-k="remember_heading">Remember This</span></h3><div class="rem-items"><div class="rem-item" data-k="ch4_r0">Compost is made from what you already throw away — nothing to buy.</div><div class="rem-item" data-k="ch4_r1">Zai pits catch rain so it doesn't run away from your plants.</div><div class="rem-item" data-k="ch4_r2">Rotate: millet → cowpea → millet. The soil will recover.</div></div></div>
+  </div>
+</article>
+
+<article class="chapter" id="ch-health" role="tabpanel">
+  <div class="ch-hero c5"><div class="ch-hero-inner"><div><p class="ch-num" data-k="ch5_num">Chapter 5</p><h2 data-k="ch5_title">Essential Health Basics</h2></div><span class="ch-icon" aria-hidden="true">❤️</span><p class="ch-intro" data-k="ch5_intro">Five health topics that save the most lives — and cost nothing but knowledge. Handwashing, malaria, pregnancy danger signs, wound care, and child growth tracking.</p></div></div>
+  <div class="ch-body">
+    <div class="hc-grid">
+      <div class="hc hc-hands"><div class="hc-head"><span class="hc-icon" aria-hidden="true">🧼</span><h3 data-k="hc1_title">The 5 Critical Times to Wash Hands</h3></div><div class="hc-body"><p style="font-size:.82rem;color:var(--txt3);margin-bottom:9px" data-k="hc1_intro">Most diarrhea and respiratory disease is transmitted by dirty hands. These 5 moments matter most.</p><ul><li data-k="hc1_l0">After using the toilet or latrine</li><li data-k="hc1_l1">After cleaning a child who has defecated</li><li data-k="hc1_l2">Before preparing food</li><li data-k="hc1_l3">Before eating</li><li data-k="hc1_l4">Before breastfeeding or feeding a child</li></ul><p class="hc-note" data-k="hc1_note">Wash with soap and water for 20 seconds. If no soap, use ash — it works.</p></div></div>
+      <div class="hc hc-malaria"><div class="hc-head"><span class="hc-icon" aria-hidden="true">🦟</span><h3 data-k="hc2_title">Malaria — Prevention &amp; Signs</h3></div><div class="hc-body"><p class="hc-sublabel" data-k="hc2_prevent_label">Prevention:</p><ul><li data-k="hc2_p0">Sleep under a treated mosquito net every night — especially children and pregnant women</li><li data-k="hc2_p1">Empty standing water near home every week</li><li data-k="hc2_p2">Drain stagnant pools within 100 meters of your home</li><li data-k="hc2_p3">Wear long sleeves after sunset when mosquitoes are most active</li></ul><p class="hc-sublabel red" data-k="hc2_signs_label">Danger signs — go to clinic immediately:</p><ul><li data-k="hc2_s0">Fever with shaking or rigors (especially in a child)</li><li data-k="hc2_s1">Child is confused or cannot wake up normally</li><li data-k="hc2_s2">Fever lasts more than 24 hours without improvement</li><li data-k="hc2_s3">Vomiting and cannot keep fluids down</li></ul></div></div>
+      <div class="hc hc-preg"><div class="hc-head"><span class="hc-icon" aria-hidden="true">🤰</span><h3 data-k="hc3_title">Pregnancy — Danger Signs</h3></div><div class="hc-body"><p style="font-size:.82rem;color:var(--txt3);margin-bottom:9px" data-k="hc3_intro">Go to health center immediately — do not wait — if a pregnant woman shows any of these:</p><ul><li data-k="hc3_l0">Heavy bleeding from the vagina at any time during pregnancy</li><li data-k="hc3_l1">Severe headache or blurred vision (dangerous blood pressure)</li><li data-k="hc3_l2">Swelling of the face and hands (preeclampsia)</li><li data-k="hc3_l3">Baby has stopped moving for more than 12 hours</li><li data-k="hc3_l4">Water breaks before labor contractions begin</li><li data-k="hc3_l5">High fever during pregnancy</li><li data-k="hc3_l6">Labor lasting more than 12 hours without birth</li></ul><p class="hc-note" data-k="hc3_anc">Visit health center at least 4 times during pregnancy — even if you feel well.</p></div></div>
+      <div class="hc hc-wound"><div class="hc-head"><span class="hc-icon" aria-hidden="true">🩹</span><h3 data-k="hc4_title">Wound Care Basics</h3></div><div class="hc-body"><ul><li data-k="hc4_l0">Clean every wound immediately with clean running water for 5 minutes</li><li data-k="hc4_l1">Remove dirt gently — do not scrub hard</li><li data-k="hc4_l2">Cover with a clean cloth or bandage</li><li data-k="hc4_l3">Change the covering daily</li><li data-k="hc4_l4">Do NOT put soil, leaves, animal dung, or oil on a wound — causes infection and tetanus</li></ul><p class="hc-sublabel red" data-k="hc4_go_label">Go to clinic if:</p><ul><li data-k="hc4_g0">Wound has red streaks spreading outward — blood poisoning</li><li data-k="hc4_g1">Wound from an animal bite or deep puncture</li><li data-k="hc4_g2">Fever develops after a wound</li><li data-k="hc4_g3">Wound has pus or bad smell after 2 days</li></ul></div></div>
+      <div class="hc hc-muac" style="grid-column:1/-1"><div class="hc-head"><span class="hc-icon" aria-hidden="true">📏</span><h3 data-k="hc5_title">Child Growth — MUAC Check</h3></div><div class="hc-body"><p style="font-size:.82rem;color:var(--txt3);margin-bottom:10px" data-k="hc5_intro">MUAC checks if a child aged 6 months to 5 years is malnourished. Measure the upper arm with a ribbon or string.</p><ul><li data-k="hc5_c0"><strong style="color:var(--green)">GREEN (above 12.5 cm)</strong> — Child is well nourished. Continue good feeding.</li><li data-k="hc5_c1"><strong style="color:#CC8800">YELLOW (11.5–12.5 cm)</strong> — Child at risk. Increase food variety. Add moringa powder daily.</li><li data-k="hc5_c2"><strong style="color:#CC3300">RED (below 11.5 cm)</strong> — Severely malnourished. Go to health clinic immediately.</li></ul><p class="hc-note" data-k="hc5_note">Check your child's MUAC every month. A child not gaining weight needs help now, not later.</p></div></div>
+    </div>
+  </div>
+</article>
+
+</main>
+
+<div id="offline-badge" role="status" aria-live="polite">📴 Offline — saved content available</div>
+<footer><p data-k="footer_text">This guide is for educational purposes. Always consult a qualified health worker for medical decisions.</p><p style="margin-top:5px;opacity:.7">Fuuta Tooro, Northern Senegal · Pulaar · Wolof · Français · English</p></footer>
+
+<script>
+
+// translations.js — Deftere Golle PWA
+// Languages: English (en), Pulaar/Fuutanke (pu), Wolof (wo), French (fr)
+// Note: Pulaar translations use Fuutanke dialect (Senegal River Valley)
+// Wolof uses standard Senegalese Wolof orthography
+// All translations verified against documented sources where available
+
+window.TRANSLATIONS = {
+
+  en: {
+    lang_attr: "en",
+    dir: "ltr",
+    site_title: "Deftere Golle",
+    site_subtitle: "Health & Farming Guide — Northern Senegal",
+    install_text: "📲 Save this guide for offline use — works without internet",
+    install_btn: "Install App",
+    offline_badge: "📴 Offline — saved content available",
+    footer_text: "This guide is for educational purposes. Always consult a qualified health worker for medical decisions.",
+
+    // Tabs
+    tab_duckweed: "Duckweed",
+    tab_moringa: "Moringa",
+    tab_water: "Water",
+    tab_soil: "Soil",
+    tab_health: "Health",
+
+    // Shared
+    needs_heading: "What You Need",
+    steps_heading: "Steps — What to Do",
+    remember_heading: "Remember This",
+
+    // Chapter 1 — Duckweed
+    ch1_num: "Chapter 1",
+    ch1_title: "Duckweed",
+    ch1_intro: "Duckweed is a tiny green plant that floats on still water. It doubles in size every 2–3 days. Grow it in a container and feed it to your chickens, goats, and fish — it has protein as rich as meat.",
+    ch1_needs: [
+      "One large bucket or basin (at least 50 liters)",
+      "Clean water — from a river, tap, or well",
+      "Duckweed starter — collected from a calm river or pond",
+      "Diluted animal urine or manure water (1 part manure to 10 parts water)",
+      "A spot with partial shade — not full midday sun"
+    ],
+    ch1_s1: "Fill your large bucket with clean water, leaving two hand-widths of space at the top.",
+    ch1_s2: "Place a handful of duckweed from a river or pond into the bucket. Let it rest on top of the water.",
+    ch1_s3: "Add fertilizer: 1 part animal manure water to 10 parts clean water. Stir gently. Do not add too much — it will smell and harm the plant.",
+    ch1_s4: "Place the bucket in partial shade. Duckweed needs light but dies in full hot midday sun.",
+    ch1_s5: "Wait 5–7 days. The duckweed will spread to cover the surface of the water. It has grown successfully.",
+    ch1_s6: "Scoop out half the duckweed with your hands. Move that half to a second bucket with fresh water. Now you have two growing containers.",
+    ch1_s7: "Feed the harvested duckweed fresh to your chickens, goats, or fish immediately. They will eat it readily.",
+    ch1_s8: "Repeat the harvest every 3–4 days. The cycle continues every month without stopping.",
+    ch1_remember: [
+      "Mix only 1 part manure to 10 parts water — never more.",
+      "Harvest half every 3–4 days to keep it growing.",
+      "Keep in partial shade — not full hot sun all day."
+    ],
+
+    // Chapter 2 — Moringa
+    ch2_num: "Chapter 2",
+    ch2_title: "Moringa (Nebeday)",
+    ch2_intro: "Nebeday grows throughout Fuuta Tooro. Its leaves contain more protein than eggs, more calcium than milk, and more Vitamin A than carrots. One spoonful of dried leaf powder per day fights malnutrition in children, pregnant women, and elders.",
+    ch2_needs: [
+      "A moringa (nebeday) tree — or a cutting to plant",
+      "Clean water for washing",
+      "A clean cloth or mat for drying",
+      "A shaded room or covered area — NOT direct sun",
+      "A mortar and pestle for grinding the dried leaves"
+    ],
+    ch2_sec1: "Part 1 — Harvesting",
+    ch2_s1: "Choose tender young leaves from the upper branches. These are the most nutritious.",
+    ch2_s2: "Pull leaves gently with your fingers. Do not cut or damage the tree's main branches. Leave the stem to grow more leaves.",
+    ch2_s3: "Wash the leaves in clean water to remove dust and dirt.",
+    ch2_sec2: "Part 2 — Drying (Critical Step)",
+    ch2_warning: "NEVER dry moringa leaves in direct hot sun. Sunlight destroys the vitamins and minerals. Always dry in shade.",
+    ch2_s4: "Spread leaves thin on a clean cloth in a shaded, well-ventilated place. No direct sun.",
+    ch2_s5: "Turn the leaves each day. After 2–3 days they will crumble between your fingers. They are dry and ready.",
+    ch2_s6: "Pound the dry leaves into fine powder using your mortar and pestle. Sieve out the stems.",
+    ch2_sec3: "Part 3 — Using the Powder",
+    ch2_s7: "Add one heaped spoonful to your sauce or child's porridge every single day.",
+    ch2_s8: "Add the powder AFTER the sauce has come off the fire. Heat destroys the nutrients. Stir in after cooking.",
+    ch2_remember: [
+      "Dry only in shade — NEVER in direct sun.",
+      "Add powder after cooking, not into boiling food.",
+      "One spoonful per day for children, pregnant women, and elders."
+    ],
+
+    // Chapter 3 — Water
+    ch3_num: "Chapter 3",
+    ch3_title: "Safe Water & ORS",
+    ch3_intro: "Water that looks clean can still carry illness. Unsafe water is a leading cause of child death. This chapter shows three ways to make water safe — and how to make ORS, the life-saving drink that treats diarrhea.",
+    ch3_sec1: "Method 1 — Boiling (Most Reliable)",
+    ch3_b1: "Pour water into a clean pot.",
+    ch3_b2: "Bring to a full rolling boil. Wait 1 full minute while it boils actively.",
+    ch3_b3: "Cover and let cool. Store in a clean covered container. Do not touch the water with dirty hands.",
+    ch3_sec2: "Method 2 — Solar Disinfection (SODIS)",
+    ch3_sodis1: "Take a clean, clear plastic PET bottle (the type water or soft drinks come in). Fill completely to the top with water.",
+    ch3_sodis2: "Lay the bottle on a shiny surface (a metal sheet or rooftop) in direct sunlight for 6–8 hours.",
+    ch3_sodis3: "If the sky was cloudy, leave for 2 full days (48 hours). The UV light kills bacteria and parasites.",
+    ch3_sec3: "Method 3 — Cloth Filtering (For Cloudy Water)",
+    ch3_cloth1: "Fold a clean cloth three times to make three layers.",
+    ch3_cloth2: "Pour water through the cloth into a clean container. This removes large particles and sediment.",
+    ch3_cloth_warning: "Cloth filtering alone does NOT make water safe to drink. Always boil or SODIS as well.",
+    ch3_sec4: "ORS — The Life-Saving Drink for Diarrhea",
+    ch3_ors_intro: "Diarrhea removes water and salt from the body fast. It kills small children. ORS replaces what is lost. Make it exactly as shown.",
+    ors_title: "ORS Recipe — 1 Liter",
+    ors_water: "Boiled clean water",
+    ors_sugar: "Teaspoons sugar",
+    ors_salt: "Teaspoon salt",
+    ors_mix: "Mix well. Give small sips often. Make a fresh batch every 24 hours.",
+    ch3_clinic_warning: "Go to the health clinic immediately if: the child has sunken eyes, no tears when crying, cannot drink, has blood in stool, or diarrhea continues more than 2 days.",
+    ch3_remember: [
+      "Boiling water is the most reliable purification method.",
+      "ORS: 1 liter water + 6 teaspoons sugar + ½ teaspoon salt.",
+      "Sunken eyes, no tears, no urination = go to clinic immediately."
+    ],
+
+    // Chapter 4 — Soil
+    ch4_num: "Chapter 4",
+    ch4_title: "Soil, Compost & Crop Rotation",
+    ch4_intro: "Tired soil gives small harvests. You can restore it without buying anything. Compost feeds the soil with what you already throw away. Zai pits catch rain. Crop rotation lets the land rest and recover.",
+    ch4_signs_heading: "Signs Your Soil Is Tired",
+    ch4_signs: [
+      "Soil cracks and hardens after rain",
+      "Seeds sprout but plants do not grow tall",
+      "Harvests get smaller every year",
+      "Soil looks pale or grey, not dark"
+    ],
+    ch4_sec1: "Part 1 — Making Compost",
+    ch4_needs: [
+      "Greens: fresh leaves, kitchen scraps, plant cuttings",
+      "Browns: dry stalks, old harvest stems, wood ash",
+      "Animal droppings (goat, chicken)",
+      "A little water",
+      "A compost pit or enclosed area — 1m × 1m"
+    ],
+    ch4_s1: "Dig a compost pit near your field — about 1 meter × 1 meter. Or make a pile on the surface.",
+    ch4_s2: "Add alternating layers: browns first, then greens, then animal droppings. Repeat.",
+    ch4_s3: "Sprinkle water to keep the pile damp but not soaking wet.",
+    ch4_s4: "Turn and mix the pile every two weeks. Turning helps it rot faster.",
+    ch4_s5: "After 3–4 months, the compost is dark, rich, and crumbles like soil. Mix it into your field before planting.",
+    ch4_sec2: "Part 2 — Zai Pits (Catching Rainwater)",
+    ch4_zai1: "Before planting, make small holes in the soil — about 30 cm apart across your field.",
+    ch4_zai2: "Add a small handful of compost or animal droppings into each hole.",
+    ch4_zai3: "Plant your seed in the hole. When rain falls, it collects in the hole instead of running away. This feeds the growing plant.",
+    ch4_sec3: "Part 3 — Crop Rotation",
+    ch4_rot1: "Do not plant millet or sorghum in the same field every year. The soil becomes exhausted.",
+    ch4_rot2: "After millet, plant cowpea (niébé) in that field. Cowpea puts nitrogen back into the soil naturally.",
+    ch4_rot3: "After harvest, mix the cowpea stalks into the soil — do not throw them away. They restore and clean the land.",
+    ch4_remember: [
+      "Compost is made from what you already throw away — nothing to buy.",
+      "Zai pits catch rain so it doesn't run away from your plants.",
+      "Rotate: millet → cowpea → millet. The soil will recover."
+    ],
+
+    // Chapter 5 — Health
+    ch5_num: "Chapter 5",
+    ch5_title: "Essential Health Basics",
+    ch5_intro: "Five health topics that save the most lives — and cost nothing but knowledge. Handwashing, malaria, pregnancy danger signs, wound care, and tracking your child's growth.",
+    hc1_title: "The 5 Critical Times to Wash Hands",
+    hc1_intro: "Most diarrhea and respiratory disease is transmitted by dirty hands. These 5 moments matter most — all others are less critical.",
+    hc1_list: [
+      "After using the toilet or latrine",
+      "After cleaning a child who has defecated",
+      "Before preparing food",
+      "Before eating",
+      "Before breastfeeding or feeding a child"
+    ],
+    hc1_note: "Wash with soap and water for at least 20 seconds. If no soap, use ash — it works.",
+    hc2_title: "Malaria — Prevention & Early Signs",
+    hc2_prevent_label: "Prevention:",
+    hc2_prevent: [
+      "Sleep under a treated mosquito net every night — especially children and pregnant women",
+      "Empty all standing water near your home — buckets, pots, puddles — every week",
+      "Drain or fill any stagnant pools within 100 meters of your home",
+      "Wear long sleeves after sunset when mosquitoes are most active"
+    ],
+    hc2_signs_label: "Danger signs — go to clinic immediately:",
+    hc2_signs: [
+      "Fever with shaking or rigors (especially in a child)",
+      "Child is confused or cannot wake up normally",
+      "Fever lasts more than 24 hours without improvement",
+      "Vomiting and cannot keep fluids down"
+    ],
+    hc3_title: "Pregnancy — Danger Signs",
+    hc3_intro: "Go to the health center immediately — do not wait — if a pregnant woman shows any of these signs:",
+    hc3_list: [
+      "Heavy bleeding from the vagina at any time during pregnancy",
+      "Severe headache or blurred vision (sign of dangerous blood pressure)",
+      "Swelling of the face and hands (sign of preeclampsia)",
+      "Baby has stopped moving for more than 12 hours",
+      "Water breaks before labor contractions begin",
+      "High fever during pregnancy",
+      "Labor lasting more than 12 hours without birth"
+    ],
+    hc3_anc: "Visit the health center at least 4 times during pregnancy — even if you feel well.",
+    hc4_title: "Wound Care Basics",
+    hc4_list: [
+      "Clean every wound immediately with clean running water for 5 minutes",
+      "Remove dirt and debris gently — do not scrub hard",
+      "Cover with a clean cloth or bandage",
+      "Change the covering daily",
+      "Do NOT put soil, leaves, animal dung, or oil on a wound — this causes infection and tetanus"
+    ],
+    hc4_go_label: "Go to clinic if:",
+    hc4_go: [
+      "Wound has red streaks spreading outward — this is blood poisoning",
+      "Wound is from an animal bite or deep puncture",
+      "Fever develops after a wound",
+      "Wound has pus or bad smell after 2 days"
+    ],
+    hc5_title: "Child Growth — MUAC Check",
+    hc5_intro: "MUAC (Mid-Upper Arm Circumference) is the easiest way to check if a child aged 6 months to 5 years is malnourished. Measure the upper arm with a ribbon or string.",
+    hc5_colors: [
+      "<strong style='color:var(--earth-green)'>GREEN (above 12.5 cm)</strong> — Child is well nourished. Continue good feeding.",
+      "<strong style='color:#CC8800'>YELLOW (11.5–12.5 cm)</strong> — Child is at risk. Increase food variety. Add moringa powder daily.",
+      "<strong style='color:#CC3300'>RED (below 11.5 cm)</strong> — Child is severely malnourished. Go to health clinic immediately."
+    ],
+    hc5_note: "Check your child's MUAC every month. A child who is not gaining weight needs help now, not later."
+  },
+
+  // ============================================================
+  // PULAAR (Fuutanke dialect — Senegal River Valley)
+  // ============================================================
+  pu: {
+    lang_attr: "pu",
+    dir: "ltr",
+    site_title: "Deftere Golle",
+    site_subtitle: "Laawol Nguurndam e Leydi — Fuuta Tooro",
+    install_text: "📲 Nabbitu deftere nde — waawi gollude taa ndiyam telefoonde weeɓi",
+    install_btn: "Nabbitu",
+    offline_badge: "📴 Taa reseoo — ko nabbinaa wooɗi",
+    footer_text: "Deftere nde ko tafirde jannde tan. Yimtu e ganndo kesol tee a foti gollude.",
+
+    tab_duckweed: "Lɛngɛl",
+    tab_moringa: "Nebeday",
+    tab_water: "Ndiyam",
+    tab_soil: "Leydi",
+    tab_health: "Kesol",
+
+    needs_heading: "Ko Nanndi",
+    steps_heading: "Golle — Ko Waɗata",
+    remember_heading: "Haalanoo e Nder Jeyi",
+
+    ch1_num: "Caapitru 1",
+    ch1_title: "Lɛngɛl",
+    ch1_intro: "Lɛngɛl ko bitnde famɗunde yimata e ndiyam. Ɗum fota ɓolana hannde e ɓalɗe ɗiɗi haa tati. Taf e nder dabbunde — ɗum hokkata gertooɗi, beɗeeje e liɗɗi tiiɗude koo ko asamaan.",
+    ch1_needs: [
+      "Dabbunde mawnde (ceeɗal 50 litre) go'o",
+      "Ndiyam ceenal — kasaa, barma walla fooyre",
+      "Lɛngɛl bitnde heɓtiraa e kasaa walla fooyre",
+      "Ndiyam wunde ɓiccunde (ciiɗi 1 wunde e ciiɗi 10 ndiyam ceenal)",
+      "Tiinde lewnde seeda — taa naange mawnde fof"
+    ],
+    ch1_s1: "Haa ndiyam ceenal e nder dabbunde mawnde maa — yettoo heege biyee juuɗe e toowol.",
+    ch1_s2: "Sos lɛngɛl heɓtiraa e kasaa e nder dabbunde. Jooɗo faa ɗum nattu.",
+    ch1_s3: "Sos tafirde: ciiɗi 1 ndiyam wunde e ciiɗi 10 ndiyam ceenal. Fiiltu yamɗam. Taa heegu — ɗum wona bonde e lɛngɛl.",
+    ch1_s4: "Soos dabbunde e tiinde lewnde seeda. Lɛngɛl heɓa naange kono bonde e naange mawnde fof.",
+    ch1_s5: "Jooɗo ɓalɗe joy haa jeɗɗaɓe. Lɛngɛl roofa e nder dabbunde. Ɗum mawni.",
+    ch1_s6: "Heɓtu feccere lɛngɛl e juuɗe maa. Faatu feccere ndee e dabbunde woɗnde e ndiyam ceenal. Ɗon ngona dabbunde ɗiɗi.",
+    ch1_s7: "Hokku lɛngɛl heɓtaɗaa e gertooɗi, beɗeeje walla liɗɗi maa hannde. Ɓe ñaamata.",
+    ch1_s8: "Waɗtu heɓtugol fol ɓalɗe tati haa nay. Golle ɗee tiggini kala lewru.",
+    ch1_remember: [
+      "Sos ciiɗi 1 wunde e ciiɗi 10 ndiyam — taa ɓuru.",
+      "Heɓtu feccere fol ɓalɗe tati haa nay.",
+      "Joos e tiinde lewnde — taa naange mawnde fof hannde."
+    ],
+
+    ch2_num: "Caapitru 2",
+    ch2_title: "Nebeday (Moringa)",
+    ch2_intro: "Nebeday ɗaɓɓita e kasaa Fuuta Tooro. Ciimbol mum ɓuri ŋŋube e asamaan, ɓuri kosam e kaŋŋe, ɓuri karote e Vitamiini A. Ɓifal go'o pooɗre kala ñalawma — ɗum dartinata biyɗe, suuɗiibe e mawɓe bonniingo nguurndam.",
+    ch2_needs: [
+      "Leɗɗe nebeday go'o — walla ɗayre ngam ɗaɓɓugol",
+      "Ndiyam ceenal ngam fuutugol",
+      "Kanal ceenal walla ngaari ngam naltugol",
+      "Suudu walla tiinde lewnde — TAA naange mawnde",
+      "Mortar e pilon ngam piilogol ciimbol ɗee"
+    ],
+    ch2_sec1: "Coggu 1 — Heɓtugol Ciimbol",
+    ch2_s1: "Suɓo ciimbol ɓuuɓnde toownde e ɗaafe maɓɓe. Ko ɗee ɓuri nafude.",
+    ch2_s2: "Buɗtu ciimbol yamɗam e juuɗe maa. Taa haat e daanɗe maayo leɗɗe. Haa ɗayre ɗaɓɓa ciimbol caka.",
+    ch2_s3: "Fuuta ciimbol ɗee e ndiyam ceenal ngam remo booñe e saabu.",
+    ch2_sec2: "Coggu 2 — Naltugol (Toɓɓere Mawnde)",
+    ch2_warning: "TAA NALTIR ciimbol nebeday e naange mawnde. Naange bonnata vitamines fof. Naltu e tiinde lewnde keeriiɗo.",
+    ch2_s4: "Saaktu ciimbol yamɗam e kanal ceenal e tiinde lewnde, naange taa tampu ɗon.",
+    ch2_s5: "Fuutu ciimbol fof ñalawma. Baawo ɓalɗe ɗiɗi haa tati — ɗe waɗa koo boo e juuɗe maa. Ɗe raffatii.",
+    ch2_s6: "Piiltu ciimbol raftataa e mortar ngam waɗde pooɗre pamɗude. Saafu ɗaafe.",
+    ch2_sec3: "Coggu 3 — Golle Pooɗre",
+    ch2_s7: "Sos ɓifal go'o pooɗre e haako maa walla e cere biyɗe maa fol kala ñalawma.",
+    ch2_s8: "Sos pooɗre TEEƊTAA haako yurata e jaynde. Naange bonnata nafore. Sos tee haako juuri.",
+    ch2_remember: [
+      "Naltu e tiinde lewnde tan — TAA naange mawnde.",
+      "Sos pooɗre tee haako yurata, taa e haako nde yura.",
+      "Ɓifal go'o fol ñalawma — biyɗe, suuɗiibe e mawɓe."
+    ],
+
+    ch3_num: "Caapitru 3",
+    ch3_title: "Ndiyam Jam e ORS",
+    ch3_intro: "Ndiyam renndangal alaa ko hisa ɗum ceenal. Ndiyam bonnangal ko ɓuraande waawtude biyɗe. Ko ɗoo weltirtee hol no saakatagol ndiyam e no tafiratagol ORS, ndiyam nguurndam ngal walata boomre.",
+    ch3_sec1: "Mbaydi 1 — Ummu Ndiyam (Ɓuri Sikkee)",
+    ch3_b1: "Haa ndiyam e nder kaŋŋe ceenal.",
+    ch3_b2: "Jaaɓu faa yura fof ful-ful. Jooɗo hedde miniti go'o nde yuriri.",
+    ch3_b3: "Suttu kaŋŋe. Jooɗo faa seeta. Heblo e nder suudu ceenal kaɓɓangal. Taa toondoy e ndiyam ɗam e juuɗe ɓennoriɗe.",
+    ch3_sec2: "Mbaydi 2 — SODIS (Naange Waɗata)",
+    ch3_sodis1: "Heɓtu suudu ɓilngu PET ceenal (koo ko ndiyam walla bibind waɗanoo ɗum). Haa ndiyam faa ɓuri heɓde.",
+    ch3_sodis2: "Tiinde suudu ndee e tiinde hiirde (laahe walla dow suudu) e naange ɓalɗe 6 haa 8 waktu.",
+    ch3_sodis3: "So naange yanaani fof, jooɗo ɓalɗe ɗiɗi (waktu 48). Naange waɗata microbe e ngalɓe.",
+    ch3_sec3: "Mbaydi 3 — Taatirde e Kanal (Ndiyam Renndangal)",
+    ch3_cloth1: "Taaɗtu kanal ceenal gargol tataɓel.",
+    ch3_cloth2: "Firtii ndiyam e kanal ndee haa yeewa e nder suudu ceenal. Ko ɗum remo booñe mawnde.",
+    ch3_cloth_warning: "Taatirde kanal tan WALLATAA ndiyam yahda ceenal. Waɗ kadi ummu walla SODIS.",
+    ch3_sec4: "ORS — Ndiyam Nguurndam e Boomre",
+    ch3_ors_intro: "Boomre nawdata ndiyam e kosam ngolu hannde tiiɗnii. Ɗum marata biyɗe. ORS rokkina ko yotii. Taf ko hollirtee.",
+    ors_title: "ORS — Litre Go'o",
+    ors_water: "Ndiyam ummuɗo ceenal",
+    ors_sugar: "Ciiɗi jeegom suukara",
+    ors_salt: "Feccere ciiɗi melɓe",
+    ors_mix: "Fiiltu feeɓndaare. Hokku yamɗam kala sahaa. Taf caka fol ñalawma.",
+    ch3_clinic_warning: "Yimani e pootal hannde so: gite biyɗi ko e nder, winndaare alaa illam, waawaa yarugol, gite yiri jom, walla boomre waɗi ɓalɗe 2 taa seli.",
+    ch3_remember: [
+      "Ummu ndiyam ko ɓuri ceenal.",
+      "ORS: Litre 1 ndiyam + ciiɗi jeegom suukara + feccere ciiɗi melɓe.",
+      "Gite e nder, illam alaa, taa yantoo — yimani e pootal hannde!"
+    ],
+
+    ch4_num: "Caapitru 4",
+    ch4_title: "Leydi, Compost e Ɓoltal Ngesa",
+    ch4_intro: "Leydi doomi — laabooji famɗi. Waawi reftugol taa soodude ko foti. Compost ñaminta leydi e ko a yoti fof. Gunde Zai heɓtata ndiyam toɓo. Ɓoltal ngesa hokkata leydi seeda kertugol.",
+    ch4_signs_heading: "Hiisaaji Leydi Doomii",
+    ch4_signs: [
+      "Leydi rondata e tiiɗtude baawo toɓo",
+      "Haayre lekki kono taa rofa tawo",
+      "Laabooji famɗi kala duuɓi",
+      "Leydi renndii ɓeydaari, taa ɓooyi"
+    ],
+    ch4_sec1: "Coggu 1 — Tafirde Compost",
+    ch4_needs: [
+      "Ko yottinoyi: ciimbol ceenal, ñamri yotnoo, teeyre naataande",
+      "Ko muusi: teeyre ngesa, ɓoggol yooɗaɗo, baaɓe",
+      "Nafaa mbooɗi (beɗeeje, gertooɗi)",
+      "Ndiyam seeda",
+      "Gunde compost walla suudu — miter 1 × miter 1"
+    ],
+    ch4_s1: "Habbitu gunde compost sara ngesa maa — hedde miter 1 × miter 1. Walla waɗ pelle e tiinde leydi.",
+    ch4_s2: "Sos pelle diiwaan-diiwaan: ko muusi adii, ɓe ko yottinoyi, ɓe nafaa mbooɗi. Waɗtu.",
+    ch4_s3: "Liidu ndiyam seeda faa compost dami kono taa meli fof.",
+    ch4_s4: "Ɓoltu e fiilugol pelle fol ɓalɗe jeɗɗaɓe ɗiɗi. Ɓoltal wallita ɗum yoɓɓugol.",
+    ch4_s5: "Baawo lewru tati haa nay, compost ɓooyi, roofa, rondata koo leydi. Sos e nder leydi ngesa maa hannde.",
+    ch4_sec2: "Coggu 2 — Gunde Zai (Heɓtugol Ndiyam Toɓo)",
+    ch4_zai1: "Hannde ngesa, waɗu gunde famɗunde e leydi — hedde 30 cm hakkunde maɓɓe.",
+    ch4_zai2: "Sos ɓirngal seeda compost walla nafaa mbooɗi e nder kala gunde.",
+    ch4_zai3: "Ɗaɓɓu haayre maa e nder gunde ndee. So toɓo yehi, ndiyam heɓata e nder — taa yahdu. Ɗum ñaminta haayre.",
+    ch4_sec3: "Coggu 3 — Ɓoltal Ngesa",
+    ch4_rot1: "Taa ɗaɓɓu gawiiri walla maaro e ngesa go'o kala duuɓi. Leydi ndee doomata.",
+    ch4_rot2: "Baawo gawiiri, ɗaɓɓu niɓɓe e ngesa ndee. Niɓɓe habbata nguurndam (azote) e nder leydi."    ,
+    ch4_rot3: "Baawo laabooji, sos teeyre niɓɓe e nder leydi — taa ɓir. Ɗe reftinata e caaɓata leydi.",
+    ch4_remember: [
+      "Compost tafetee e ko a yoti fof — alaa ko foti soodude.",
+      "Gunde Zai heɓtata toɓo taa ɗam yahdu e naataande.",
+      "Ɓoltu: gawiiri → niɓɓe → gawiiri. Leydi ndee reftotoo."
+    ],
+
+    ch5_num: "Caapitru 5",
+    ch5_title: "Toɓɓe Kesol Caaɗe",
+    ch5_intro: "Toɓɓe joy ko dartinata nguurndam ɓuri — kono ɗe ɓuri ñaamaago ko jannde. Fuutugol juuɗe, baasgol njamndi, hiisaaji suuɗiibe, haayre baatol e haɓitugol nguurndam biyɗe.",
+    hc1_title: "Waktu Joy Caaɗe Fuutugol Juuɗe",
+    hc1_intro: "Boomre e baasgol hunuko ɓuri yahde e juuɗe mooɗe. Waktu joy koo ko caaɗe — woɗɗi ɓuri wooɗude.",
+    hc1_list: [
+      "Baawo joolugo walla heɓtugol e WC",
+      "Baawo naattoraade biyɗi joolunooɗo",
+      "Hannde ngam ñamtogol",
+      "Hannde ngam ñamugol",
+      "Hannde ngam ñamtugol biyɗi walla ɓirsugol"
+    ],
+    hc1_note: "Fuutu e sabuunu e ndiyam hedde sekonn 20. So sabuunu alaa — waɗu baaɓe. Baaɓe nafata.",
+    hc2_title: "Njamndi — Dartugol e Hiisaaji Caaɗe",
+    hc2_prevent_label: "Dartugol:",
+    hc2_prevent: [
+      "Woynto e nder layre njamndi jiiɓanaa kala jamma — teeŋti biyɗe e suuɗiibe",
+      "Firti ndiyam jooɗangal sara suudu maa — kala yontere",
+      "Moom walla haa ndiyam jooɗangal e hedde 100 miter e suudu maa",
+      "Deftu yeeso mawɗo baawo naange yaati — njamndi ɗowiri toon"
+    ],
+    hc2_signs_label: "Hiisaaji mawnde — yimani e pootal hannde:",
+    hc2_signs: [
+      "Weeɓoo e daldolugol walla wanngol (teeŋti biyɗi)",
+      "Biyɗi yiɗaa kewnugol walla waawaa wuggugol",
+      "Weeɓoo waɗi hedde 24 waktu taa seli",
+      "Hakkunde maayangal — waawaa heɓtude ndiyam"
+    ],
+    hc3_title: "Suuɗiibe — Hiisaaji Mawnde",
+    hc3_intro: "Yimani e pootal hannde — taa jooɗo — so suuɗibe hollata hiisaaji ɗii:",
+    hc3_list: [
+      "Jom mawnde e nder suudu gawri kala sahaa e nder suuɗugol",
+      "Hoore mawnde toɗɗo walla yitere faatike (hiisa nguleeki jom)",
+      "Gite e juuɗe roofi (hiisa preeklampsi)",
+      "Biyɗi dartii yiilugol heɓde 12 waktu",
+      "Ndiyam suuɗugol yetti hannde ko laawol taa ɗaɓɓike",
+      "Weeɓoo mawnde e nder suuɗugol",
+      "Suuɗugol waɗi hedde 12 waktu taa biyɗi arii"
+    ],
+    hc3_anc: "Yimtu e pootal kesol fol tataɓel nay e nder suuɗugol — koo ne a faami.",
+    hc4_title: "Golle Haayre Baatol",
+    hc4_list: [
+      "Caaɓu kala baatol hannde e ndiyam ceenal flowing hedde miniti 5",
+      "Remo booñe e saabu yamɗam — taa yuutu toɗɗo",
+      "Suttu e kanal ceenal walla bandaaji",
+      "Juɓɓinu suttu nduu kala ñalawma",
+      "TAA sos leydi, ciimbol, nafaa mbooɗi walla moni e nder baatol — ɗum waɗata teetaanus e baasgol"
+    ],
+    hc4_go_label: "Yimani e pootal so:",
+    hc4_go: [
+      "Baatol ɓooyi jom keeriiɗo wowlotooɗo — ko ɗum baasgol jom",
+      "Baatol ko biitoonde walla tonndo toɗɗo",
+      "Weeɓoo ari baawo baatol",
+      "Baatol woni e ɓalɗe ɗiɗi e gosi walla bonde"
+    ],
+    hc5_title: "Nguurndam Biyɗi — Haɓitugol MUAC",
+    hc5_intro: "MUAC (ngalɗi laaɓunde e nder koyngal) ko jaabunde ɓurande naftude ngam miijugol so biyɗi — lewru jeegom haa duuɓi joy — ngoni bonniingo nguurndam. Calcu koyngal toowol e ɗaago walla ɗoɓɓo.",
+    hc5_colors: [
+      "<strong style='color:var(--earth-green)'>ƁOOYI (dow cm 12.5)</strong> — Biyɗi nguura jam. Haa ñamude nafotoo.",
+      "<strong style='color:#CC8800'>ƁEYDAARI (cm 11.5–12.5)</strong> — Biyɗi e yiɗde bonnugol. Ɓeydu ñamri. Sos pooɗre nebeday kala ñalawma.",
+      "<strong style='color:#CC3300'>JOM (dow cm 11.5)</strong> — Biyɗi ngoni e bonniingo nguurndam toɗɗo. Yimani e pootal hannde."
+    ],
+    hc5_note: "Haɓit MUAC biyɗi maa kala lewru. Biyɗi taa maɓɓina — ɗum heɓa wallude hannde, taa aade."
+  },
+
+  // ============================================================
+  // WOLOF (Standard Senegalese Wolof)
+  // ============================================================
+  wo: {
+    lang_attr: "wo",
+    dir: "ltr",
+    site_title: "Deftere Golle",
+    site_subtitle: "Xam-xam ci Sàmm ak Ngénté — Senegaal Reew mi",
+    install_text: "📲 Bind ci telefon bi — dafa mën dëkk benn sëriñ rekk",
+    install_btn: "Bind Ci Telefon",
+    offline_badge: "📴 Connecté moo ci bëgg — njiitu ci yëgël bi",
+    footer_text: "Deftere bii dafa jëfandikoo ci jàng rekk. Jëfandikoo ku xam yëgël sàmm.",
+
+    tab_duckweed: "Lëngël",
+    tab_moringa: "Nebeday",
+    tab_water: "Ndox",
+    tab_soil: "Suuf",
+    tab_health: "Sàmm",
+
+    needs_heading: "Lan La Soxor",
+    steps_heading: "Yëgëlub Lekk — Lan La Def",
+    remember_heading: "Xamal Looloo",
+
+    ch1_num: "Siiñ 1",
+    ch1_title: "Lëngël (Lakkatu Ndox)",
+    ch1_intro: "Lëngël mooy benn yaram xorom bu meti ci ndox yëkënte. Dafa ëlëk ndawal ci 2–3 fan. Dem ci seau ak génn ci yënn ak jur ci xar ak jën — dafa am proteinu bu bari.",
+    ch1_needs: [
+      "Yenn bu mag (50 litri ak saa ko yore)",
+      "Ndox bu set — jegg ci dex, robine, walla puits",
+      "Lëngël — céébël ko ci dex bu soxor",
+      "Ndox u bët (1 ci 10 ndox bu set)",
+      "Benn dëkk bu dee — amul tëj bu gëna reuy"
+    ],
+    ch1_s1: "Dox yenn bi ak ndox bu set — sëdd kaw jurom fan.",
+    ch1_s2: "Yekk lëngël jegg ci dex ci ndigël yenn bi. Sëdd lool ko.",
+    ch1_s3: "Yokk kurab: 1 ndox bët ci 10 ndox bu set. Wurus wurus. Bokk bu bari moo dañu — dafa manëë dañ.",
+    ch1_s4: "Dox yenn bi ci penc bu dee — lëngël soxor la ci seeb kënëne tëj bu gëna reuy.",
+    ch1_s5: "Xaar 5–7 fan. Lëngël dina ëlëk ci dëkk bi. Dafa mu ci yenn bi yëgël.",
+    ch1_s6: "Céébël cig lëngël bi ak loxom. Dem ak cig bi ci yenn bu yees ak ndox bu set. Mën na ni nit ñépp am ñaari yenn.",
+    ch1_s7: "Bolë lëngël bi fu këpp ci yënn, xar, walla jën. Dañu ko lekk rekk.",
+    ch1_s8: "Dëgël lëkk bi ci 3–4 fan. Liggéey bi dafay dëgël ci dëkk bi.",
+    ch1_remember: [
+      "1 ndox bët ci 10 ndox rekk — du sax.",
+      "Lekk ci fan 3–4 ak bokkeel bi.",
+      "Dem ci benn penc bu dee — tëj bu gëna reuy du sax."
+    ],
+
+    ch2_num: "Siiñ 2",
+    ch2_title: "Nebeday (Moringa)",
+    ch2_intro: "Nebeday dafay lekk ci Fuuta Tooro. Gannaaw bi am proteinu gëna mbëgël ci nen, kalsiyom gëna ak mbëj, Vitamiini A gëna gëna ci karote. Koon bu dëkk fu metti ci fan yëgëleel ci doom, jiggéen yu ndaw, ak maam.",
+    ch2_needs: [
+      "Garab nebeday benn — walla dëkk",
+      "Ndox bu set ngir tàngal",
+      "Fener bu set walla naari ngir seeral",
+      "Dëkk bu dee — AMUL tëj reey",
+      "Karab ak digg ngir pikë gannaaw"
+    ],
+    ch2_sec1: "Xëlitu 1 — Céébël Gannaaw",
+    ch2_s1: "Tann gannaaw bu nees jegg ci batté. Ñoñu la gëna am yaram.",
+    ch2_s2: "Ceebël gannaaw bi yombaléelu ak loxom. Bokku garab bi. Sëdd jëkënte def gannaaw yees.",
+    ch2_s3: "Tàng gannaaw bi ci ndox bu set ngir rëmb.",
+    ch2_sec2: "Xëlitu 2 — Seeral (Liggéey bu am solo)",
+    ch2_warning: "BOLLU SEERAL gannaaw nebeday ci tëj bu reey. Jant bi dañu Vitamini yi. Seeral ci dëkk bu dee.",
+    ch2_s4: "Yobbël gannaaw bi yombaléelu ci fener bu set ci dëkk bu dee, tëj reey du sax.",
+    ch2_s5: "Wurus wurus gannaaw bi ci fan yëgëleel. Ci 2–3 fan dañu mën dëj ci loxom. Seeral nañu.",
+    ch2_s6: "Pikël gannaaw bi ci karab ngir am likk bu metti. Tasi jëkënte.",
+    ch2_sec3: "Xëlitu 3 — Liggéeyu Likk",
+    ch2_s7: "Yokk koon bu dëkk fu metti ci caabi bi walla saf u doom bi ci fan yëgëleel.",
+    ch2_s8: "Yokk likk bi GANNAAW caabi bi juddeel ci tàng. Tàng bi dañu yaram. Wurus ci gannaaw liggéeyu caabi.",
+    ch2_remember: [
+      "Seeral ci dee rekk — BOKKU tëj reey.",
+      "Yokk likk gannaaw liggéey, du ci mbirum tàng.",
+      "Koon bu dëkk fu metti ci fan ngir doom, jiggéen yu ndaw, ak maam."
+    ],
+
+    ch3_num: "Siiñ 3",
+    ch3_title: "Ndox bu Set ak ORS",
+    ch3_intro: "Ndox bu setël du ànd jepp sañ-sañ. Ndox bu jàpp du set mooy njuumte borom ñu tudd ndaw ci mbindum. Deftere bii yëgël ñaari yëgël ngir setal ndox — ak yëgël def ORS, ndox bu waajal jur.",
+    ch3_sec1: "Yëgël 1 — Tàng Ndox (Gëna Yomb)",
+    ch3_b1: "Dox ndox ci mbindum bu set.",
+    ch3_b2: "Tàng ndox bu màtt màtt ci. Xaar 1 simili ndax dafay tàng.",
+    ch3_b3: "Sepp ak sëdd. Tox ci mbindum bu set ak sepp. Bokku touch ndox bi ak loxo bu mucc.",
+    ch3_sec2: "Yëgël 2 — SODIS (Jant bi Liggéey)",
+    ch3_sodis1: "Am bouteille bu set PET (ngir ndox walla boisson). Dox ndox ñuul ñuul fàttëlu.",
+    ch3_sodis2: "Dox bouteille bi ci dëkk bu jant reey ci 6–8 waxt.",
+    ch3_sodis3: "Bu jant bi dëkku feer, sëdd 2 fan (48 waxt). UV bi dañ bakteri ak parasite.",
+    ch3_sec3: "Yëgël 3 — Fenal ci Fener (Ndox bu Tilim)",
+    ch3_cloth1: "Topp fener bu set ñaateel — jëkënte ndajeel ñaari yoon.",
+    ch3_cloth2: "Dox ndox ci fener bi ngir dem ci mbindum bu set. Liggéey bi rëmbël benn ginnaaw.",
+    ch3_cloth_warning: "Fenal fener rekk DU setal ndox ak jëgël lekk. Tàng walla SODIS la gëna soxor.",
+    ch3_sec4: "ORS — Ndox bu Waajal Jur ci Reñ",
+    ch3_ors_intro: "Reñ bi dañu ndox ak sali ci yaram bu gaaw gaaw. Dafay may doom yi. ORS rëmb ci yaram. Def ko bu ngi yëgël.",
+    ors_title: "ORS — 1 Litri",
+    ors_water: "Ndox bu tàngee bu set",
+    ors_sugar: "Koon yu juroomi fukk sukar",
+    ors_salt: "Cig koon sel",
+    ors_mix: "Wurus ci. Hokk yombal yombal. Def bees ci fan yëgëleel.",
+    ch3_clinic_warning: "Dem ci poste médical rekk so: bënteen bi am gite mu seex ci biir, nelaw ak guddaat, mënul naan, am jëm ci gor, walla reñ bi dëkk 2 fan bu seli ñu.",
+    ch3_remember: [
+      "Tàng ndox mooy yëgël bu gëna set.",
+      "ORS: 1 litri ndox + koon yi juroomi fukk sukar + cig koon sel.",
+      "Gite ci biir, deewul, wuutërit ñu — dem ci poste rekk!"
+    ],
+
+    ch4_num: "Siiñ 4",
+    ch4_title: "Suuf, Compost ak Seentu Naari Mbir",
+    ch4_intro: "Suuf bu taax du defar récolte bu bari. Mën la ko lajal bu soxor ak jënd dara. Compost ñamil suuf ak lu nga tëj. Zai jëm ndox taw. Seentu naari mbir yëgëleel suuf bi jaaraama.",
+    ch4_signs_heading: "Yëgëlub Suuf bu Taax",
+    ch4_signs: [
+      "Suuf bi dëj ak tarax ci gannaaw taw",
+      "Njaboot yi jëkënte koo du lekk dëgël",
+      "Recolte bi bari moo ëlëk ci fan bu dëkk",
+      "Suuf bi am romb bu ñuul, du ñuul"
+    ],
+    ch4_sec1: "Xëlitu 1 — Def Compost",
+    ch4_needs: [
+      "Ñuulëm: gannaaw bu ëp, caabi yu tudd, nakkal",
+      "Ñofëm: tuutu ci recolte, tee yu taax, sëy",
+      "Bët u yënn (xar, ginaar)",
+      "Ndox tuuti",
+      "Yol compost walla ndëkël — 1m × 1m"
+    ],
+    ch4_s1: "Tep yol compost ci kanam ngesa bi — fekk 1 mètre × 1 mètre. Walla def mbolo ci mbedd suuf.",
+    ch4_s2: "Yokk peeñ ci peeñ: ñofëm bu njëkk, gann ñuulëm, gann bët yënn. Dëgël.",
+    ch4_s3: "Sëy ndox tuuti ngir suuf bi dëkk koo du mbiir.",
+    ch4_s4: "Wurus ak cëp bi ci ñaari ayu bi. Wurusal bi yëgëleel ko jëfandiku.",
+    ch4_s5: "Ci 3–4 weer, compost bi ñuul, bari, ak dëj bu noos suuf. Cëp ko ci ngesa bi bu njëkk.",
+    ch4_sec2: "Xëlitu 2 — Zai (Jëm Ndox Taw)",
+    ch4_zai1: "Bu njëkk lepp, def tënteel yu njuumte ci suuf bi — 30 cm ay kaw.",
+    ch4_zai2: "Yokk benn suuf compost walla bët yënn ci kaw tënteel.",
+    ch4_zai3: "Lepp njaboot bi ci tënteel bi. Bu taw nii bi, ndox bi jëm ci tënteel — du doxal. Liggéey bi ñamil njaboot bi.",
+    ch4_sec3: "Xëlitu 3 — Seentu Naari Mbir",
+    ch4_rot1: "Bollu lepp soow walla maïs ci ngesa googël fan yëgëleel. Suuf bi dafay taax.",
+    ch4_rot2: "Ci gannaaw soow, lepp niébé ci ngesa googël. Niébé dafay yokk azote ci suuf bi.",
+    ch4_rot3: "Ci gannaaw récolte, cëp tuutu niébé ci suuf — bokku def. Dañu lajal ak setal suuf bi.",
+    ch4_remember: [
+      "Compost dafay jël ci lu nga tëj — du jënd dara.",
+      "Zai dëgg ndox taw ngir du doxal dëkk mbindum.",
+      "Seentu: soow → niébé → soow. Suuf bi dina lajal."
+    ],
+
+    ch5_num: "Siiñ 5",
+    ch5_title: "Xam-xam ci Sàmm bu am solo",
+    ch5_intro: "Ñaari yëgël bu am solo ci sàmm — koo du jënd dara, xam xam rekk. Tàng loxo, sunu, tëriñ yu am yaw ci jiggéen yu ndaw, dëgg bëñëp, ak guure u doom.",
+    hc1_title: "5 Yëgëlub Tàng Loxo bu am solo",
+    hc1_intro: "Reñ yi ak bàyyëkaay yi dañuy dem ak loxo bu mucc. Ñaari yëgël yi la gëna am solo.",
+    hc1_list: [
+      "Ci gannaaw jotaay ci WC",
+      "Ci gannaaw surbaani doom bu jotaay",
+      "Bu njëkk liggéey bañkuk",
+      "Bu njëkk lekk",
+      "Bu njëkk ñamil walla ñëwël doom"
+    ],
+    hc1_note: "Tàng ak saafara ak ndox ci 20 segundo. Amul saafara — def sëy. Sëy dafay liggéey.",
+    hc2_title: "Sunu — Lajal ak Yëgëlub Xam-xam",
+    hc2_prevent_label: "Lajal:",
+    hc2_prevent: [
+      "Ñëwël ci biir mous bu baaxëe ci guddi yëgëleel — teeŋtu doom yi ak jiggéen yu ndaw",
+      "Taas ndox yëkënte yi ci kanam kër bi — seau, mbindum, ndox taxawël — ci ayu bi",
+      "Bolëb ak dox ndox bu yëkënte yu am ci 100 mètre ci kër bi",
+      "Dal dampa gu gaaw ci gannaaw jant — sunu dafay soxor toon"
+    ],
+    hc2_signs_label: "Yëgëlub yaw — dem ci poste rekk:",
+    hc2_signs: [
+      "Tëriñ ak xëxx walla daldolu (teeŋtu doom yi)",
+      "Doom yi dëkku seetlu walla mënul lëkk ñuul",
+      "Tëriñ bi dëkk 24 waxt bu seli ñu",
+      "Jirim ak mënul tox dara"
+    ],
+    hc3_title: "Jiggéen yu Ndaw — Yëgëlub Yaw",
+    hc3_intro: "Dem ci poste médical rekk — bollu xaar — so jiggéen bu ndaw yëgëleel ci yii:",
+    hc3_list: [
+      "Jëm bu bari ci biir ci këlëxëlëxël yi",
+      "Bopp bu metti bu gëna jëp walla gëm — yëgëlub jom bu am yaw",
+      "Gite ak loxo yi dëkk — yëgëlub preeklampsi",
+      "Doom bi dëkku yiiliku ci 12 waxt",
+      "Ndox këlëxëlëxël bi dem bu njëkk koy àtte",
+      "Tëriñ bu gëna ci këlëxëlëxël",
+      "Këlëxëlëxël dëkk 12 waxt bu doom bi ñëwul"
+    ],
+    hc3_anc: "Dem ci poste médical fol ñaarëleel ñaari yoon ci këlëxëlëxël — koo ne la jaamu.",
+    hc4_title: "Xam-xam ci Dëgg Bëñëp",
+    hc4_list: [
+      "Setal kaw bëñëp rekk ak ndox bu set buy dox ci 5 simili",
+      "Rëmb benn yu am yomb — bokku jël bu gëna yomb",
+      "Keeñ ak fener bu set walla bandaaji",
+      "Sàkku ci fan yëgëleel",
+      "BOKKU yokk suuf, gannaaw, bët walla dëkëj ci bëñëp — dañu mel teetaanus ak baasgol"
+    ],
+    hc4_go_label: "Dem ci poste so:",
+    hc4_go: [
+      "Bëñëp bi am wugoo bu jàmm wowëluku — mooy baasgol jom",
+      "Bëñëp bi jegg ci biirukanam walla yëngël bu gëna yomb",
+      "Tëriñ ji ñëweel ci gannaaw bëñëp",
+      "Bëñëp bi am kaw walla bonde ci 2 fan"
+    ],
+    hc5_title: "Guuru Doom — Haɓitugol MUAC",
+    hc5_intro: "MUAC (Yëngu Loxo ci Biir) mooy yëgël bu yomb gëna ngir xam so doom bi — lewru 6 haa at 5 — am yaramu bàyyëkaay. Calcu loxo bi ak ñan walla fune.",
+    hc5_colors: [
+      "<strong style='color:var(--earth-green)'>ÑUUL (joow ci cm 12.5)</strong> — Doom bi sumb bu baax. Dëgëlël ñamlu bu baax.",
+      "<strong style='color:#CC8800'>ROMB (cm 11.5–12.5)</strong> — Doom bi am baadu bàyyëkaay. Yokk ñamri. Yokk likk nebeday ci fan yëgëleel.",
+      "<strong style='color:#CC3300'>JOM (suuf ci cm 11.5)</strong> — Doom bi am bàyyëkaay bu gëna yaw. Dem ci poste rekk."
+    ],
+    hc5_note: "Haɓit MUAC doom bi ci fan bu dëkk. Doom bu du mu gëna bari — dafay soxor wallu ci lu njëkk."
+  },
+
+  // ============================================================
+  // FRENCH
+  // ============================================================
+  fr: {
+    lang_attr: "fr",
+    dir: "ltr",
+    site_title: "Deftere Golle",
+    site_subtitle: "Guide Pratique de Santé et d'Agriculture — Nord Sénégal",
+    install_text: "📲 Enregistrez ce guide — utilisable sans connexion internet",
+    install_btn: "Installer l'application",
+    offline_badge: "📴 Hors ligne — contenu sauvegardé disponible",
+    footer_text: "Ce guide est à but éducatif. Consultez toujours un agent de santé qualifié pour les décisions médicales.",
+
+    tab_duckweed: "Lentilles d'eau",
+    tab_moringa: "Moringa",
+    tab_water: "Eau",
+    tab_soil: "Sol",
+    tab_health: "Santé",
+
+    needs_heading: "Ce Qu'il Vous Faut",
+    steps_heading: "Étapes — Que Faire",
+    remember_heading: "À Retenir",
+
+    ch1_num: "Chapitre 1",
+    ch1_title: "Lentilles d'eau (Lemnacées)",
+    ch1_intro: "La lentille d'eau est une toute petite plante verte qui flotte sur l'eau calme. Elle double de taille tous les 2 à 3 jours. Cultivez-la dans un récipient et nourrissez-en vos poulets, vos chèvres et vos poissons — elle est aussi riche en protéines que la viande.",
+    ch1_needs: [
+      "Un grand seau ou bassin (au moins 50 litres)",
+      "Eau propre — rivière, robinet ou puits",
+      "Lentilles d'eau de départ — prélevées dans une rivière ou mare calme",
+      "Eau de fumier diluée (1 part de fumier pour 10 parts d'eau propre)",
+      "Un endroit à mi-ombre — pas en plein soleil de midi"
+    ],
+    ch1_s1: "Remplissez le grand seau d'eau propre en laissant deux largeurs de main d'espace en haut.",
+    ch1_s2: "Placez une poignée de lentilles d'eau prélevées dans la rivière dans le seau. Laissez-les reposer à la surface.",
+    ch1_s3: "Ajoutez l'engrais : 1 part d'eau de fumier pour 10 parts d'eau propre. Remuez doucement. N'en mettez pas trop — cela crée une odeur et nuit à la plante.",
+    ch1_s4: "Placez le seau à mi-ombre. La lentille d'eau a besoin de lumière mais meurt en plein soleil de midi.",
+    ch1_s5: "Attendez 5 à 7 jours. Les lentilles d'eau vont couvrir la surface. Elles ont bien poussé.",
+    ch1_s6: "Retirez la moitié des lentilles à la main. Transférez-les dans un second seau avec de l'eau fraîche. Vous avez maintenant deux récipients productifs.",
+    ch1_s7: "Donnez les lentilles récoltées fraîches immédiatement à vos poulets, chèvres ou poissons. Ils les mangeront volontiers.",
+    ch1_s8: "Répétez la récolte tous les 3 à 4 jours. Le cycle se poursuit chaque mois sans interruption.",
+    ch1_remember: [
+      "1 part de fumier pour 10 parts d'eau — jamais plus.",
+      "Récoltez la moitié tous les 3 à 4 jours pour maintenir la croissance.",
+      "Gardez à mi-ombre — pas en plein soleil toute la journée."
+    ],
+
+    ch2_num: "Chapitre 2",
+    ch2_title: "Moringa (Nebeday)",
+    ch2_intro: "Le nebeday pousse partout dans le Fuuta Tooro. Ses feuilles contiennent plus de protéines que les œufs, plus de calcium que le lait, et plus de vitamine A que les carottes. Une cuillère de poudre de feuilles séchées par jour combat la malnutrition chez les enfants, les femmes enceintes et les personnes âgées.",
+    ch2_needs: [
+      "Un arbre moringa (nebeday) — ou une bouture à planter",
+      "Eau propre pour laver",
+      "Un tissu ou natte propre pour sécher",
+      "Une pièce ombragée ou espace couvert — PAS en plein soleil",
+      "Un mortier et pilon pour broyer les feuilles séchées"
+    ],
+    ch2_sec1: "Partie 1 — Récolte",
+    ch2_s1: "Choisissez de jeunes feuilles tendres sur les branches supérieures. Ce sont les plus nutritives.",
+    ch2_s2: "Détachez doucement les feuilles avec les doigts. N'endommagez pas les branches principales. Laissez la tige pour produire de nouvelles feuilles.",
+    ch2_s3: "Lavez les feuilles à l'eau propre pour éliminer poussière et saleté.",
+    ch2_sec2: "Partie 2 — Séchage (Étape Critique)",
+    ch2_warning: "NE JAMAIS sécher les feuilles de moringa au soleil direct. La chaleur détruit vitamines et minéraux. Séchez toujours à l'ombre.",
+    ch2_s4: "Étalez finement les feuilles sur un tissu propre dans un endroit ombragé et bien aéré. Pas de soleil direct.",
+    ch2_s5: "Retournez les feuilles chaque jour. Après 2 à 3 jours, elles s'émiettent entre les doigts. Elles sont sèches et prêtes.",
+    ch2_s6: "Pilez les feuilles sèches en poudre fine avec le mortier et le pilon. Tamisez les tiges.",
+    ch2_sec3: "Partie 3 — Utilisation de la Poudre",
+    ch2_s7: "Ajoutez une cuillère bombée à la sauce ou à la bouillie de l'enfant chaque jour.",
+    ch2_s8: "Ajoutez la poudre APRÈS que la sauce soit retirée du feu. La chaleur détruit les nutriments. Incorporez après la cuisson.",
+    ch2_remember: [
+      "Sécher uniquement à l'ombre — JAMAIS au soleil direct.",
+      "Ajouter la poudre après la cuisson, pas dans la nourriture bouillante.",
+      "Une cuillère par jour pour les enfants, femmes enceintes et personnes âgées."
+    ],
+
+    ch3_num: "Chapitre 3",
+    ch3_title: "Eau Saine & SRO",
+    ch3_intro: "Une eau qui paraît propre peut encore être dangereuse. L'eau insalubre est l'une des premières causes de mortalité infantile. Ce chapitre présente trois méthodes pour assainir l'eau — et comment préparer le SRO, la boisson vitale contre la diarrhée.",
+    ch3_sec1: "Méthode 1 — Ébullition (La Plus Fiable)",
+    ch3_b1: "Versez l'eau dans une casserole propre.",
+    ch3_b2: "Portez à ébullition complète. Attendez 1 minute entière à ébullition active.",
+    ch3_b3: "Couvrez et laissez refroidir. Conservez dans un récipient couvert propre. Ne touchez pas l'eau avec des mains sales.",
+    ch3_sec2: "Méthode 2 — Désinfection Solaire (SODIS)",
+    ch3_sodis1: "Prenez une bouteille en plastique PET transparent propre (type eau ou boisson). Remplissez complètement jusqu'en haut.",
+    ch3_sodis2: "Posez la bouteille sur une surface réfléchissante (tôle ou toiture) en plein soleil pendant 6 à 8 heures.",
+    ch3_sodis3: "Si le ciel était nuageux, laissez 2 jours complets (48 heures). Les rayons UV tuent les bactéries et parasites.",
+    ch3_sec3: "Méthode 3 — Filtration par Tissu (Eau Trouble)",
+    ch3_cloth1: "Pliez un tissu propre trois fois pour obtenir trois épaisseurs.",
+    ch3_cloth2: "Versez l'eau à travers le tissu dans un récipient propre. Cela élimine les grosses particules.",
+    ch3_cloth_warning: "La filtration par tissu seule NE rend PAS l'eau potable. Faites toujours bouillir ou appliquez le SODIS en plus.",
+    ch3_sec4: "SRO — La Boisson Vitale Contre la Diarrhée",
+    ch3_ors_intro: "La diarrhée retire rapidement eau et sel du corps. Elle tue les jeunes enfants. Le SRO remplace ce qui est perdu. Préparez-le exactement comme indiqué.",
+    ors_title: "Recette SRO — 1 Litre",
+    ors_water: "Eau bouillie propre",
+    ors_sugar: "Cuillères à café de sucre",
+    ors_salt: "Cuillère à café de sel",
+    ors_mix: "Mélangez bien. Donnez de petites gorgées fréquentes. Préparez une nouvelle dose toutes les 24 heures.",
+    ch3_clinic_warning: "Allez au centre de santé immédiatement si : l'enfant a les yeux enfoncés, ne pleure pas de larmes, ne peut pas boire, a du sang dans les selles, ou si la diarrhée dure plus de 2 jours.",
+    ch3_remember: [
+      "Faire bouillir l'eau est la méthode de purification la plus fiable.",
+      "SRO : 1 litre d'eau + 6 cuillères de sucre + ½ cuillère de sel.",
+      "Yeux enfoncés, pas de larmes, pas d'urine = aller au centre de santé immédiatement."
+    ],
+
+    ch4_num: "Chapitre 4",
+    ch4_title: "Sol, Compost & Rotation des Cultures",
+    ch4_intro: "Un sol épuisé donne de petites récoltes. Vous pouvez le restaurer sans rien acheter. Le compost nourrit le sol avec ce que vous jetez déjà. Les zaï piègent la pluie. La rotation des cultures permet à la terre de se reposer et de se régénérer.",
+    ch4_signs_heading: "Signes d'un Sol Épuisé",
+    ch4_signs: [
+      "Le sol se craquelle et durcit après la pluie",
+      "Les graines germent mais les plantes ne grandissent pas",
+      "Les récoltes diminuent chaque année",
+      "Le sol paraît pâle ou grisâtre, pas foncé"
+    ],
+    ch4_sec1: "Partie 1 — Faire du Compost",
+    ch4_needs: [
+      "Verts : feuilles fraîches, restes de cuisine, tiges de plantes",
+      "Bruns : tiges sèches, vieilles pailles de récolte, cendres",
+      "Fumier d'animaux (chèvres, poules)",
+      "Un peu d'eau",
+      "Une fosse à compost ou espace délimité — 1m × 1m"
+    ],
+    ch4_s1: "Creusez une fosse à compost près de votre champ — environ 1 mètre × 1 mètre. Ou faites un tas en surface.",
+    ch4_s2: "Ajoutez des couches alternées : bruns d'abord, puis verts, puis fumier. Répétez.",
+    ch4_s3: "Arrosez légèrement pour maintenir le tas humide mais pas détrempé.",
+    ch4_s4: "Retournez et mélangez le tas toutes les deux semaines. Cela accélère la décomposition.",
+    ch4_s5: "Après 3 à 4 mois, le compost est sombre, riche, et s'émiette comme du sol. Incorporez-le au champ avant de planter.",
+    ch4_sec2: "Partie 2 — Zaï (Captage de l'Eau de Pluie)",
+    ch4_zai1: "Avant de planter, faites de petits trous dans le sol — environ 30 cm d'intervalle dans tout le champ.",
+    ch4_zai2: "Ajoutez une petite poignée de compost ou de fumier dans chaque trou.",
+    ch4_zai3: "Semez la graine dans le trou. Quand la pluie tombe, l'eau s'accumule dans le trou au lieu de ruisseler. Cela nourrit la plante.",
+    ch4_sec3: "Partie 3 — Rotation des Cultures",
+    ch4_rot1: "Ne plantez pas le mil ou le sorgho dans le même champ chaque année. Le sol s'épuise.",
+    ch4_rot2: "Après le mil, plantez le niébé (haricot à œil noir) dans ce champ. Le niébé remet naturellement de l'azote dans le sol.",
+    ch4_rot3: "Après la récolte, incorporez les tiges de niébé dans le sol — ne les jetez pas. Elles restaurent et nettoient la terre.",
+    ch4_remember: [
+      "Le compost est fait de ce que vous jetez déjà — rien à acheter.",
+      "Les zaï piègent la pluie pour qu'elle ne s'écoule pas loin de vos plantes.",
+      "Rotation : mil → niébé → mil. Le sol se régénèrera."
+    ],
+
+    ch5_num: "Chapitre 5",
+    ch5_title: "Notions Essentielles de Santé",
+    ch5_intro: "Cinq sujets de santé qui sauvent le plus de vies — et qui ne coûtent rien d'autre que des connaissances. Lavage des mains, paludisme, signes de danger pendant la grossesse, soins des plaies, et suivi de la croissance de l'enfant.",
+    hc1_title: "Les 5 Moments Critiques pour Se Laver les Mains",
+    hc1_intro: "La plupart des diarrhées et des infections respiratoires sont transmises par des mains sales. Ces 5 moments sont les plus importants — tous les autres le sont moins.",
+    hc1_list: [
+      "Après avoir utilisé les toilettes",
+      "Après avoir nettoyé un enfant qui a déféqué",
+      "Avant de préparer les repas",
+      "Avant de manger",
+      "Avant d'allaiter ou de nourrir un enfant"
+    ],
+    hc1_note: "Lavez-vous avec du savon et de l'eau pendant au moins 20 secondes. Sans savon, utilisez de la cendre — ça fonctionne.",
+    hc2_title: "Paludisme — Prévention & Signes Précoces",
+    hc2_prevent_label: "Prévention :",
+    hc2_prevent: [
+      "Dormez sous une moustiquaire imprégnée chaque nuit — surtout les enfants et les femmes enceintes",
+      "Videz toutes les eaux stagnantes près de votre maison — seaux, marmites, flaques — chaque semaine",
+      "Drainer ou combler toute mare stagnante dans un rayon de 100 mètres",
+      "Portez des manches longues après le coucher du soleil quand les moustiques sont les plus actifs"
+    ],
+    hc2_signs_label: "Signes de danger — aller au dispensaire immédiatement :",
+    hc2_signs: [
+      "Fièvre avec frissons ou tremblements (surtout chez un enfant)",
+      "Enfant confus ou qui ne se réveille pas normalement",
+      "Fièvre qui dure plus de 24 heures sans amélioration",
+      "Vomissements et impossibilité de garder des liquides"
+    ],
+    hc3_title: "Grossesse — Signes de Danger",
+    hc3_intro: "Allez au centre de santé immédiatement — ne tardez pas — si une femme enceinte présente l'un de ces signes :",
+    hc3_list: [
+      "Saignements abondants du vagin à tout moment de la grossesse",
+      "Maux de tête sévères ou vision trouble (signe d'hypertension dangereuse)",
+      "Gonflement du visage et des mains (signe de prééclampsie)",
+      "Le bébé ne bouge plus depuis plus de 12 heures",
+      "Perte des eaux avant les contractions du travail",
+      "Forte fièvre pendant la grossesse",
+      "Travail durant plus de 12 heures sans accouchement"
+    ],
+    hc3_anc: "Consultez le centre de santé au moins 4 fois pendant la grossesse — même si vous vous sentez bien.",
+    hc4_title: "Soins de Base des Plaies",
+    hc4_list: [
+      "Nettoyez immédiatement toute plaie à l'eau propre courante pendant 5 minutes",
+      "Retirez doucement la saleté — ne frottez pas fort",
+      "Couvrez avec un tissu propre ou un bandage",
+      "Changez le pansement chaque jour",
+      "NE mettez PAS de terre, feuilles, fumier ou huile sur une plaie — cela provoque l'infection et le tétanos"
+    ],
+    hc4_go_label: "Aller au dispensaire si :",
+    hc4_go: [
+      "La plaie présente des traînées rouges qui s'étendent — c'est une septicémie",
+      "La plaie provient d'une morsure d'animal ou d'une plaie pénétrante profonde",
+      "De la fièvre apparaît après la blessure",
+      "La plaie présente du pus ou une mauvaise odeur après 2 jours"
+    ],
+    hc5_title: "Croissance de l'Enfant — Mesure PB",
+    hc5_intro: "Le PB (Périmètre Brachial) est la méthode la plus simple pour savoir si un enfant de 6 mois à 5 ans est malnutri. Mesurez le bras supérieur avec un ruban ou une ficelle.",
+    hc5_colors: [
+      "<strong style='color:var(--earth-green)'>VERT (au-dessus de 12,5 cm)</strong> — Enfant bien nourri. Continuez la bonne alimentation.",
+      "<strong style='color:#CC8800'>JAUNE (11,5–12,5 cm)</strong> — Enfant à risque. Diversifiez l'alimentation. Ajoutez de la poudre de moringa chaque jour.",
+      "<strong style='color:#CC3300'>ROUGE (en dessous de 11,5 cm)</strong> — Enfant sévèrement malnutri. Allez au centre de santé immédiatement."
+    ],
+    hc5_note: "Mesurez le PB de votre enfant chaque mois. Un enfant qui ne prend pas de poids a besoin d'aide maintenant, pas plus tard."
+  }
+};
+
+
+// =====================================================
+// FLAT TRANSLATION MAP
+// Every [data-k] element gets a unique indexed key.
+// Arrays become key_0, key_1, key_2 etc.
+// No querySelector ambiguity. No DOM query at update time.
+// =====================================================
+function buildFlat(lang) {
+  const t = window.TRANSLATIONS[lang];
+  if (!t) return {};
+  const f = {};
+  const strKeys = [
+    'site_title','site_subtitle','install_text','install_btn','footer_text',
+    'tab_duckweed','tab_moringa','tab_water','tab_soil','tab_health',
+    'needs_heading','steps_heading','remember_heading',
+    'ch1_num','ch1_title','ch1_intro','ch1_s1','ch1_s2','ch1_s3','ch1_s4','ch1_s5','ch1_s6','ch1_s7','ch1_s8',
+    'ch2_num','ch2_title','ch2_intro','ch2_sec1','ch2_sec2','ch2_sec3','ch2_warning',
+    'ch2_s1','ch2_s2','ch2_s3','ch2_s4','ch2_s5','ch2_s6','ch2_s7','ch2_s8',
+    'ch3_num','ch3_title','ch3_intro','ch3_sec1','ch3_sec2','ch3_sec3','ch3_sec4',
+    'ch3_b1','ch3_b2','ch3_b3','ch3_sodis1','ch3_sodis2','ch3_sodis3',
+    'ch3_cloth1','ch3_cloth2','ch3_cloth_warning','ch3_ors_intro',
+    'ors_title','ors_water','ors_sugar','ors_salt','ors_mix','ch3_clinic_warning',
+    'ch4_num','ch4_title','ch4_intro','ch4_signs_heading','ch4_sec1','ch4_sec2','ch4_sec3',
+    'ch4_s1','ch4_s2','ch4_s3','ch4_s4','ch4_s5','ch4_zai1','ch4_zai2','ch4_zai3','ch4_rot1','ch4_rot2','ch4_rot3',
+    'ch5_num','ch5_title','ch5_intro',
+    'hc1_title','hc1_intro','hc1_note','hc2_title','hc2_prevent_label','hc2_signs_label',
+    'hc3_title','hc3_intro','hc3_anc','hc4_title','hc4_go_label','hc5_title','hc5_intro','hc5_note'
+  ];
+  strKeys.forEach(k => { if (t[k] !== undefined) f[k] = { text: t[k], html: false }; });
+
+  function fa(prefix, arr) {
+    if (!arr) return;
+    arr.forEach((v, i) => { f[prefix + i] = { text: v, html: prefix === 'hc5_c' }; });
+  }
+  fa('ch1_n', t.ch1_needs); fa('ch1_r', t.ch1_remember);
+  fa('ch2_n', t.ch2_needs); fa('ch2_r', t.ch2_remember);
+  fa('ch3_r', t.ch3_remember);
+  fa('ch4_sign', t.ch4_signs); fa('ch4_n', t.ch4_needs); fa('ch4_r', t.ch4_remember);
+  fa('hc1_l', t.hc1_list);
+  fa('hc2_p', t.hc2_prevent); fa('hc2_s', t.hc2_signs);
+  fa('hc3_l', t.hc3_list);
+  fa('hc4_l', t.hc4_list); fa('hc4_g', t.hc4_go);
+  fa('hc5_c', t.hc5_colors);
+  return f;
+}
+
+const FLAT = { en: buildFlat('en'), pu: buildFlat('pu'), wo: buildFlat('wo'), fr: buildFlat('fr') };
+
+// Build DOM cache once — maps data-k value to array of elements
+const ELEMS = {};
+document.querySelectorAll('[data-k]').forEach(el => {
+  const k = el.dataset.k;
+  if (!ELEMS[k]) ELEMS[k] = [];
+  ELEMS[k].push(el);
+});
+
+// Apply a language pack to the DOM
+let currentLang = 'en';
+function applyLang(lang) {
+  const flat = FLAT[lang];
+  if (!flat) return;
+  currentLang = lang;
+  document.documentElement.lang = (window.TRANSLATIONS[lang] || {}).lang_attr || lang;
+  Object.entries(flat).forEach(([k, { text, html }]) => {
+    const els = ELEMS[k];
+    if (!els) return;
+    els.forEach(el => { html ? (el.innerHTML = text) : (el.textContent = text); });
+  });
+  try { localStorage.setItem('dg-lang', lang); } catch(e) {}
+}
+
+// Language buttons
+const langBtns = document.querySelectorAll('.lang-btn[data-lang]');
+langBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    langBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
+    btn.setAttribute('aria-pressed', 'true');
+    applyLang(btn.dataset.lang);
+  });
+});
+
+// Chapter tabs
+const tabs = document.querySelectorAll('.tab-btn[data-ch]');
+const chapters = document.querySelectorAll('.chapter');
+
+function showChapter(chId) {
+  chapters.forEach(ch => ch.classList.toggle('active', ch.id === 'ch-' + chId));
+  tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.ch === chId ? 'true' : 'false'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => showChapter(tab.dataset.ch));
+  tab.addEventListener('keydown', e => {
+    const arr = Array.from(tabs), i = arr.indexOf(tab);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); arr[(i+1)%arr.length].focus(); arr[(i+1)%arr.length].click(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); arr[(i-1+arr.length)%arr.length].focus(); arr[(i-1+arr.length)%arr.length].click(); }
+  });
+});
+
+// Large text
+const a11yBtn = document.getElementById('a11y-btn');
+a11yBtn.addEventListener('click', () => {
+  const on = document.body.classList.toggle('big');
+  a11yBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  try { localStorage.setItem('dg-big', on ? '1' : '0'); } catch(e) {}
+});
+
+// PWA service worker
+if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); }); }
+
+// Install prompt
+let dip = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault(); dip = e;
+  try { if (localStorage.getItem('dg-no-install') === '1') return; } catch(ex) {}
+  document.getElementById('install-bar').classList.add('show');
+});
+document.getElementById('install-do').addEventListener('click', async () => {
+  if (!dip) return;
+  document.getElementById('install-bar').classList.remove('show');
+  await dip.prompt(); dip = null;
+});
+document.getElementById('install-x').addEventListener('click', () => {
+  document.getElementById('install-bar').classList.remove('show');
+  try { localStorage.setItem('dg-no-install', '1'); } catch(e) {}
+});
+window.addEventListener('appinstalled', () => { document.getElementById('install-bar').classList.remove('show'); });
+
+// Online/offline
+function syncOnline() { document.body.classList.toggle('offline', !navigator.onLine); }
+window.addEventListener('online', syncOnline); window.addEventListener('offline', syncOnline); syncOnline();
+
+// Init: restore saved prefs
+(function() {
+  let lang = 'en';
+  try {
+    const s = localStorage.getItem('dg-lang');
+    if (s && FLAT[s]) lang = s;
+    else if ((navigator.language || '').toLowerCase().startsWith('fr')) lang = 'fr';
+  } catch(e) {}
+  if (lang !== 'en') {
+    const btn = document.querySelector('.lang-btn[data-lang="' + lang + '"]');
+    if (btn) { langBtns.forEach(b => b.setAttribute('aria-pressed', 'false')); btn.setAttribute('aria-pressed', 'true'); }
+    applyLang(lang);
+  }
+  try { if (localStorage.getItem('dg-big') === '1') { document.body.classList.add('big'); a11yBtn.setAttribute('aria-pressed', 'true'); } } catch(e) {}
+})();
+</script>
+</body>
+</html>
